@@ -1,0 +1,45 @@
+services:
+  # ===============================
+  # PC (Simülasyon)
+  # ===============================
+  ros2_sim:
+    profiles: ["sim"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        TARGET_ARCH: x86
+        USERNAME: teknolus
+    image: ros2_full_x86
+    container_name: ros2_sim
+    network_mode: host
+    runtime: nvidia
+    env_file: .env
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      - ${ROS_WORKSPACE}:/home/teknolus/ros2_ws
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    command: ["bash", "-c", "sleep infinity"]
+
+
+  # ===============================
+  # Jetson (Gerçek robot)
+  # ===============================
+  ros2_robot:
+    profiles: ["robot"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        TARGET_ARCH: arm
+        USERNAME: teknolus
+    image: ros2_full_arm
+    container_name: ros2_robot
+    network_mode: host
+    runtime: nvidia
+    env_file: .env
+    volumes:
+      - ${ROS_WORKSPACE}:/home/teknolus/ros2_ws
+      - /dev:/dev
