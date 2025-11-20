@@ -1,0 +1,43 @@
+[4.671s] Invoking command in '/workspace/ros2_ws/build/keyboard_input': PYTHONPATH=/workspace/ros2_ws/build/keyboard_input/prefix_override:/workspace/ros2_ws/install/keyboard_input/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /workspace/ros2_ws/build/keyboard_input/build --no-deps install_data
+[6.147s] running develop
+[6.154s] /usr/local/lib/python3.8/dist-packages/setuptools/command/develop.py:40: EasyInstallDeprecationWarning: easy_install command is deprecated.
+[6.155s] !!
+[6.156s] 
+[6.156s]         ********************************************************************************
+[6.157s]         Please avoid running ``setup.py`` and ``easy_install``.
+[6.157s]         Instead, use pypa/build, pypa/installer or other
+[6.158s]         standards-based tools.
+[6.158s] 
+[6.158s]         See https://github.com/pypa/setuptools/issues/917 for details.
+[6.159s]         ********************************************************************************
+[6.159s] 
+[6.160s] !!
+[6.160s]   easy_install.initialize_options(self)
+[6.298s] /usr/local/lib/python3.8/dist-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+[6.298s] !!
+[6.299s] 
+[6.300s]         ********************************************************************************
+[6.300s]         Please avoid running ``setup.py`` directly.
+[6.301s]         Instead, use pypa/build, pypa/installer or other
+[6.301s]         standards-based tools.
+[6.302s] 
+[6.302s]         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+[6.302s]         ********************************************************************************
+[6.303s] 
+[6.303s] !!
+[6.304s]   self.initialize_options()
+[7.004s] running egg_info
+[7.070s] writing keyboard_input.egg-info/PKG-INFO
+[7.072s] writing dependency_links to keyboard_input.egg-info/dependency_links.txt
+[7.073s] writing entry points to keyboard_input.egg-info/entry_points.txt
+[7.074s] writing requirements to keyboard_input.egg-info/requires.txt
+[7.075s] writing top-level names to keyboard_input.egg-info/top_level.txt
+[7.213s] reading manifest file 'keyboard_input.egg-info/SOURCES.txt'
+[7.218s] writing manifest file 'keyboard_input.egg-info/SOURCES.txt'
+[7.515s] running build_ext
+[7.516s] Creating /workspace/ros2_ws/install/keyboard_input/lib/python3.8/site-packages/keyboard-input.egg-link (link to .)
+[7.521s] Installing keyboard_publisher script to /workspace/ros2_ws/install/keyboard_input/lib/keyboard_input
+[7.523s] 
+[7.523s] Installed /workspace/ros2_ws/build/keyboard_input
+[7.524s] running install_data
+[7.678s] Invoked command in '/workspace/ros2_ws/build/keyboard_input' returned '0': PYTHONPATH=/workspace/ros2_ws/build/keyboard_input/prefix_override:/workspace/ros2_ws/install/keyboard_input/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /workspace/ros2_ws/build/keyboard_input/build --no-deps install_data

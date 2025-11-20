@@ -1,0 +1,2 @@
+[console_scripts]
+keyboard_publisher = keyboard_input.keyboard_node:main

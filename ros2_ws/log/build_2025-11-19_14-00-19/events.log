@@ -1,0 +1,153 @@
+[0.000000] (-) TimerEvent: {}
+[0.002287] (keyboard_input) JobQueued: {'identifier': 'keyboard_input', 'dependencies': OrderedDict()}
+[0.002548] (motor_control_node) JobQueued: {'identifier': 'motor_control_node', 'dependencies': OrderedDict()}
+[0.003753] (keyboard_input) JobStarted: {'identifier': 'keyboard_input'}
+[0.097544] (-) TimerEvent: {}
+[0.142086] (motor_control_node) JobStarted: {'identifier': 'motor_control_node'}
+[0.197857] (-) TimerEvent: {}
+[0.300680] (-) TimerEvent: {}
+[0.403526] (-) TimerEvent: {}
+[0.504748] (-) TimerEvent: {}
+[0.606051] (-) TimerEvent: {}
+[0.707362] (-) TimerEvent: {}
+[0.808546] (-) TimerEvent: {}
+[0.909631] (-) TimerEvent: {}
+[1.010804] (-) TimerEvent: {}
+[1.111960] (-) TimerEvent: {}
+[1.213469] (-) TimerEvent: {}
+[1.314713] (-) TimerEvent: {}
+[1.371053] (motor_control_node) JobProgress: {'identifier': 'motor_control_node', 'progress': 'cmake'}
+[1.376264] (motor_control_node) JobProgress: {'identifier': 'motor_control_node', 'progress': 'build'}
+[1.380977] (motor_control_node) Command: {'cmd': ['/usr/local/bin/cmake', '--build', '/workspace/ros2_ws/build/motor_control_node', '--', '-j6', '-l6'], 'cwd': '/workspace/ros2_ws/build/motor_control_node', 'env': OrderedDict([('OPENBLAS_CORETYPE', 'ARMV8'), ('PYTHONIOENCODING', 'utf-8'), ('HOSTNAME', 'teknolusges1-desktop'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/install/lib:/usr/local/cuda/lib64:'), ('HOME', '/home/dev'), ('OLDPWD', '/workspace/ros2_ws'), ('ROS_PYTHON_VERSION', '3'), ('WORKSPACE', '/workspace/ros2_ws'), ('COLCON_PREFIX_PATH', '/opt/ros/humble/install'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/opt/ros/humble/install/lib/aarch64-linux-gnu/pkgconfig:/opt/ros/humble/install/lib/pkgconfig'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/install/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('ROS_ROOT', '/opt/ros/humble'), ('ROS_DOMAIN_ID', '50'), ('AMENT_PREFIX_PATH', '/opt/ros/humble/install'), ('DEBIAN_FRONTEND', 'noninteractive'), ('SHELL', '/bin/bash'), ('L4T_TAG', 'r35.4.1'), ('FASTDDS_DEFAULT_PROFILES_FILE', '/dds/fastdds.xml'), ('PWD', '/workspace/ros2_ws/build/motor_control_node'), ('LC_ALL', 'en_US.UTF-8'), ('CUDA_HOME', '/usr/local/cuda'), ('PYTHONPATH', '/opt/ros/humble/install/lib/python3.8/site-packages'), ('NVIDIA_VISIBLE_DEVICES', 'all'), ('COLCON', '1'), ('ROS_WORKSPACE', '/home/teknolusges1/ROS2inDocker2/ros2_ws'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble/install')]), 'shell': False}
+[1.415828] (-) TimerEvent: {}
+[1.519166] (-) TimerEvent: {}
+[1.621441] (-) TimerEvent: {}
+[1.722492] (-) TimerEvent: {}
+[1.823682] (-) TimerEvent: {}
+[1.925559] (-) TimerEvent: {}
+[1.934878] (motor_control_node) StdoutLine: {'line': b'[100%] Built target motor_control_node\n'}
+[1.975680] (motor_control_node) CommandEnded: {'returncode': 0}
+[2.026336] (-) TimerEvent: {}
+[2.128922] (-) TimerEvent: {}
+[2.231696] (motor_control_node) JobProgress: {'identifier': 'motor_control_node', 'progress': 'install'}
+[2.232397] (-) TimerEvent: {}
+[2.340325] (-) TimerEvent: {}
+[2.409536] (motor_control_node) Command: {'cmd': ['/usr/local/bin/cmake', '--install', '/workspace/ros2_ws/build/motor_control_node'], 'cwd': '/workspace/ros2_ws/build/motor_control_node', 'env': OrderedDict([('OPENBLAS_CORETYPE', 'ARMV8'), ('PYTHONIOENCODING', 'utf-8'), ('HOSTNAME', 'teknolusges1-desktop'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/install/lib:/usr/local/cuda/lib64:'), ('HOME', '/home/dev'), ('OLDPWD', '/workspace/ros2_ws'), ('ROS_PYTHON_VERSION', '3'), ('WORKSPACE', '/workspace/ros2_ws'), ('COLCON_PREFIX_PATH', '/opt/ros/humble/install'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/opt/ros/humble/install/lib/aarch64-linux-gnu/pkgconfig:/opt/ros/humble/install/lib/pkgconfig'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/install/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('ROS_ROOT', '/opt/ros/humble'), ('ROS_DOMAIN_ID', '50'), ('AMENT_PREFIX_PATH', '/opt/ros/humble/install'), ('DEBIAN_FRONTEND', 'noninteractive'), ('SHELL', '/bin/bash'), ('L4T_TAG', 'r35.4.1'), ('FASTDDS_DEFAULT_PROFILES_FILE', '/dds/fastdds.xml'), ('PWD', '/workspace/ros2_ws/build/motor_control_node'), ('LC_ALL', 'en_US.UTF-8'), ('CUDA_HOME', '/usr/local/cuda'), ('PYTHONPATH', '/opt/ros/humble/install/lib/python3.8/site-packages'), ('NVIDIA_VISIBLE_DEVICES', 'all'), ('COLCON', '1'), ('ROS_WORKSPACE', '/home/teknolusges1/ROS2inDocker2/ros2_ws'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble/install')]), 'shell': False}
+[2.440694] (-) TimerEvent: {}
+[2.542165] (-) TimerEvent: {}
+[2.567577] (motor_control_node) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[2.572913] (motor_control_node) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[2.577305] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/lib/motor_control_node/motor_control_node\n'}
+[2.580577] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/share/ament_index/resource_index/package_run_dependencies/motor_control_node\n'}
+[2.583549] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/share/ament_index/resource_index/parent_prefix_path/motor_control_node\n'}
+[2.586406] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/share/motor_control_node/environment/ament_prefix_path.sh\n'}
+[2.588860] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/share/motor_control_node/environment/ament_prefix_path.dsv\n'}
+[2.590719] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/share/motor_control_node/environment/path.sh\n'}
+[2.592475] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/share/motor_control_node/environment/path.dsv\n'}
+[2.594413] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/share/motor_control_node/local_setup.bash\n'}
+[2.596298] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/share/motor_control_node/local_setup.sh\n'}
+[2.597955] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/share/motor_control_node/local_setup.zsh\n'}
+[2.599489] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/share/motor_control_node/local_setup.dsv\n'}
+[2.600525] (motor_control_node) StdoutLine: {'line': b'-- Symlinking: /workspace/ros2_ws/install/motor_control_node/share/motor_control_node/package.dsv\n'}
+[2.620352] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/share/ament_index/resource_index/packages/motor_control_node\n'}
+[2.622109] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/share/motor_control_node/cmake/motor_control_nodeConfig.cmake\n'}
+[2.623622] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/share/motor_control_node/cmake/motor_control_nodeConfig-version.cmake\n'}
+[2.625208] (motor_control_node) StdoutLine: {'line': b'-- Up-to-date symlink: /workspace/ros2_ws/install/motor_control_node/share/motor_control_node/package.xml\n'}
+[2.642396] (-) TimerEvent: {}
+[2.648052] (motor_control_node) CommandEnded: {'returncode': 0}
+[2.747874] (-) TimerEvent: {}
+[2.858637] (-) TimerEvent: {}
+[2.960885] (-) TimerEvent: {}
+[3.066992] (-) TimerEvent: {}
+[3.134383] (motor_control_node) JobEnded: {'identifier': 'motor_control_node', 'rc': 0}
+[3.167152] (-) TimerEvent: {}
+[3.268057] (-) TimerEvent: {}
+[3.369776] (-) TimerEvent: {}
+[3.471490] (-) TimerEvent: {}
+[3.572482] (-) TimerEvent: {}
+[3.673440] (-) TimerEvent: {}
+[3.774404] (-) TimerEvent: {}
+[3.875438] (-) TimerEvent: {}
+[3.976642] (-) TimerEvent: {}
+[4.077615] (-) TimerEvent: {}
+[4.178648] (-) TimerEvent: {}
+[4.279701] (-) TimerEvent: {}
+[4.380670] (-) TimerEvent: {}
+[4.481818] (-) TimerEvent: {}
+[4.583043] (-) TimerEvent: {}
+[4.660785] (keyboard_input) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'develop', '--editable', '--build-directory', '/workspace/ros2_ws/build/keyboard_input/build', '--no-deps', 'install_data'], 'cwd': '/workspace/ros2_ws/build/keyboard_input', 'env': {'OPENBLAS_CORETYPE': 'ARMV8', 'PYTHONIOENCODING': 'utf-8', 'HOSTNAME': 'teknolusges1-desktop', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/install/lib:/usr/local/cuda/lib64:', 'HOME': '/home/dev', 'OLDPWD': '/workspace/ros2_ws', 'ROS_PYTHON_VERSION': '3', 'WORKSPACE': '/workspace/ros2_ws', 'COLCON_PREFIX_PATH': '/opt/ros/humble/install', 'ROS_DISTRO': 'humble', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'PKG_CONFIG_PATH': '/opt/ros/humble/install/lib/aarch64-linux-gnu/pkgconfig:/opt/ros/humble/install/lib/pkgconfig', 'NVIDIA_DRIVER_CAPABILITIES': 'all', 'TERM': 'xterm', 'ROS_LOCALHOST_ONLY': '0', 'QT_X11_NO_MITSHM': '1', 'PATH': '/opt/ros/humble/install/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'RMW_IMPLEMENTATION': 'rmw_fastrtps_cpp', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'ROS_ROOT': '/opt/ros/humble', 'ROS_DOMAIN_ID': '50', 'AMENT_PREFIX_PATH': '/opt/ros/humble/install', 'DEBIAN_FRONTEND': 'noninteractive', 'SHELL': '/bin/bash', 'L4T_TAG': 'r35.4.1', 'FASTDDS_DEFAULT_PROFILES_FILE': '/dds/fastdds.xml', 'PWD': '/workspace/ros2_ws/build/keyboard_input', 'LC_ALL': 'en_US.UTF-8', 'CUDA_HOME': '/usr/local/cuda', 'PYTHONPATH': '/workspace/ros2_ws/build/keyboard_input/prefix_override:/workspace/ros2_ws/install/keyboard_input/lib/python3.8/site-packages:/opt/ros/humble/install/lib/python3.8/site-packages', 'NVIDIA_VISIBLE_DEVICES': 'all', 'COLCON': '1', 'ROS_WORKSPACE': '/home/teknolusges1/ROS2inDocker2/ros2_ws', 'CMAKE_PREFIX_PATH': '/opt/ros/humble/install'}, 'shell': False}
+[4.683238] (-) TimerEvent: {}
+[4.784433] (-) TimerEvent: {}
+[4.885680] (-) TimerEvent: {}
+[4.986770] (-) TimerEvent: {}
+[5.087780] (-) TimerEvent: {}
+[5.188835] (-) TimerEvent: {}
+[5.289724] (-) TimerEvent: {}
+[5.391094] (-) TimerEvent: {}
+[5.492064] (-) TimerEvent: {}
+[5.594037] (-) TimerEvent: {}
+[5.695987] (-) TimerEvent: {}
+[5.797260] (-) TimerEvent: {}
+[5.898603] (-) TimerEvent: {}
+[6.000275] (-) TimerEvent: {}
+[6.102397] (-) TimerEvent: {}
+[6.150244] (keyboard_input) StdoutLine: {'line': b'running develop\n'}
+[6.157812] (keyboard_input) StderrLine: {'line': b'/usr/local/lib/python3.8/dist-packages/setuptools/command/develop.py:40: EasyInstallDeprecationWarning: easy_install command is deprecated.\n'}
+[6.158631] (keyboard_input) StderrLine: {'line': b'!!\n'}
+[6.159219] (keyboard_input) StderrLine: {'line': b'\n'}
+[6.159728] (keyboard_input) StderrLine: {'line': b'        ********************************************************************************\n'}
+[6.160245] (keyboard_input) StderrLine: {'line': b'        Please avoid running ``setup.py`` and ``easy_install``.\n'}
+[6.160690] (keyboard_input) StderrLine: {'line': b'        Instead, use pypa/build, pypa/installer or other\n'}
+[6.161206] (keyboard_input) StderrLine: {'line': b'        standards-based tools.\n'}
+[6.161681] (keyboard_input) StderrLine: {'line': b'\n'}
+[6.162108] (keyboard_input) StderrLine: {'line': b'        See https://github.com/pypa/setuptools/issues/917 for details.\n'}
+[6.162515] (keyboard_input) StderrLine: {'line': b'        ********************************************************************************\n'}
+[6.163128] (keyboard_input) StderrLine: {'line': b'\n'}
+[6.163574] (keyboard_input) StderrLine: {'line': b'!!\n'}
+[6.163976] (keyboard_input) StderrLine: {'line': b'  easy_install.initialize_options(self)\n'}
+[6.202592] (-) TimerEvent: {}
+[6.301163] (keyboard_input) StderrLine: {'line': b'/usr/local/lib/python3.8/dist-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.\n'}
+[6.302043] (keyboard_input) StderrLine: {'line': b'!!\n'}
+[6.302484] (keyboard_input) StderrLine: {'line': b'\n'}
+[6.302852] (-) TimerEvent: {}
+[6.303441] (keyboard_input) StderrLine: {'line': b'        ********************************************************************************\n'}
+[6.303967] (keyboard_input) StderrLine: {'line': b'        Please avoid running ``setup.py`` directly.\n'}
+[6.304361] (keyboard_input) StderrLine: {'line': b'        Instead, use pypa/build, pypa/installer or other\n'}
+[6.304786] (keyboard_input) StderrLine: {'line': b'        standards-based tools.\n'}
+[6.305216] (keyboard_input) StderrLine: {'line': b'\n'}
+[6.305592] (keyboard_input) StderrLine: {'line': b'        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.\n'}
+[6.305968] (keyboard_input) StderrLine: {'line': b'        ********************************************************************************\n'}
+[6.306445] (keyboard_input) StderrLine: {'line': b'\n'}
+[6.306863] (keyboard_input) StderrLine: {'line': b'!!\n'}
+[6.307351] (keyboard_input) StderrLine: {'line': b'  self.initialize_options()\n'}
+[6.403100] (-) TimerEvent: {}
+[6.504059] (-) TimerEvent: {}
+[6.605454] (-) TimerEvent: {}
+[6.706879] (-) TimerEvent: {}
+[6.808590] (-) TimerEvent: {}
+[6.909679] (-) TimerEvent: {}
+[7.007512] (keyboard_input) StdoutLine: {'line': b'running egg_info\n'}
+[7.009864] (-) TimerEvent: {}
+[7.073583] (keyboard_input) StdoutLine: {'line': b'writing keyboard_input.egg-info/PKG-INFO\n'}
+[7.075074] (keyboard_input) StdoutLine: {'line': b'writing dependency_links to keyboard_input.egg-info/dependency_links.txt\n'}
+[7.076342] (keyboard_input) StdoutLine: {'line': b'writing entry points to keyboard_input.egg-info/entry_points.txt\n'}
+[7.077289] (keyboard_input) StdoutLine: {'line': b'writing requirements to keyboard_input.egg-info/requires.txt\n'}
+[7.078186] (keyboard_input) StdoutLine: {'line': b'writing top-level names to keyboard_input.egg-info/top_level.txt\n'}
+[7.110086] (-) TimerEvent: {}
+[7.211085] (-) TimerEvent: {}
+[7.216783] (keyboard_input) StdoutLine: {'line': b"reading manifest file 'keyboard_input.egg-info/SOURCES.txt'\n"}
+[7.221715] (keyboard_input) StdoutLine: {'line': b"writing manifest file 'keyboard_input.egg-info/SOURCES.txt'\n"}
+[7.311185] (-) TimerEvent: {}
+[7.412194] (-) TimerEvent: {}
+[7.513495] (-) TimerEvent: {}
+[7.518576] (keyboard_input) StdoutLine: {'line': b'running build_ext\n'}
+[7.519754] (keyboard_input) StdoutLine: {'line': b'Creating /workspace/ros2_ws/install/keyboard_input/lib/python3.8/site-packages/keyboard-input.egg-link (link to .)\n'}
+[7.524300] (keyboard_input) StdoutLine: {'line': b'Installing keyboard_publisher script to /workspace/ros2_ws/install/keyboard_input/lib/keyboard_input\n'}
+[7.525965] (keyboard_input) StdoutLine: {'line': b'\n'}
+[7.526659] (keyboard_input) StdoutLine: {'line': b'Installed /workspace/ros2_ws/build/keyboard_input\n'}
+[7.527196] (keyboard_input) StdoutLine: {'line': b'running install_data\n'}
+[7.613841] (-) TimerEvent: {}
+[7.670653] (keyboard_input) CommandEnded: {'returncode': 0}
+[7.719291] (-) TimerEvent: {}
+[7.792291] (keyboard_input) JobEnded: {'identifier': 'keyboard_input', 'rc': 0}
+[7.797281] (-) EventReactorShutdown: {}

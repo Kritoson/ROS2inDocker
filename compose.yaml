@@ -1,0 +1,81 @@
+services:
+  # ===============================
+  # PC (Simülasyon)
+  # ===============================
+  ros2_sim:
+    profiles: ["sim"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        TARGET_ARCH: x86
+        ROS_DISTRO: humble
+        USERNAME: dev
+        USER_UID: 1000
+        USER_GID: 1000
+        WORKSPACE: /workspace/ros2_ws
+        # L4T_TAG PC tarafında fiilen kullanılmıyor ama arg olarak geçebilir
+        L4T_TAG: ${L4T_TAG:-r35.4.1}
+    image: ros2_full_x86
+    container_name: ros2_sim
+    network_mode: host
+    runtime: nvidia
+    env_file: .env
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=${QT_X11_NO_MITSHM}
+      - ROS_DOMAIN_ID=${ROS_DOMAIN_ID}
+      - RMW_IMPLEMENTATION=${RMW_IMPLEMENTATION}
+      - FASTDDS_DEFAULT_PROFILES_FILE=/dds/fastdds.xml
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    devices:
+    - /dev/dri:/dev/dri
+    volumes:
+      # Host workspace → container workspace (kullanıcı bağımsız)
+      - ${ROS_WORKSPACE}:/workspace/ros2_ws
+      # X11 soketi
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      # İstersen DDS profilini dışardan da verebilirsin:
+      # - ./dds/fastdds.xml:/dds/fastdds.xml:ro
+    # Container'ı açık tutmak için
+    command: ["bash", "-c", "sleep infinity"]
+
+  # ===============================
+  # Jetson (Gerçek robot)
+  # ===============================
+  ros2_robot:
+    profiles: ["robot"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        TARGET_ARCH: arm
+        ROS_DISTRO: humble
+        USERNAME: dev
+        USER_UID: 1000
+        USER_GID: 1000
+        WORKSPACE: /workspace/ros2_ws
+        # Jetson için L4T_TAG: JetPack 5.1.2 → r35.4.1
+        L4T_TAG: ${L4T_TAG:-r35.4.1}
+    image: ros2_full_arm
+    container_name: ros2_robot
+    network_mode: host
+    runtime: nvidia
+    env_file: .env
+    group_add:
+      - dialout
+    privileged: true
+    environment:
+      - ROS_DOMAIN_ID=${ROS_DOMAIN_ID}
+      - RMW_IMPLEMENTATION=${RMW_IMPLEMENTATION}
+      - FASTDDS_DEFAULT_PROFILES_FILE=/dds/fastdds.xml
+    volumes:
+      - ${ROS_WORKSPACE}:/workspace/ros2_ws
+      # Üretimde sadece gerekli device'ları map etmek daha güvenli:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+      # - /dev/video0:/dev/video0
+      # - /dev:/dev
+    # Gerçek robotta örn. bir bringup launch komutunu direkt buraya koyabilirsin:
+    # command: ["ros2", "launch", "paket_adı", "robot_bringup.launch.py"]
+    command: ["sleep", "infinity"]

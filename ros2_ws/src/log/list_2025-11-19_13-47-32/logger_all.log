@@ -1,0 +1,51 @@
+[1.274s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'list']
+[1.274s] DEBUG:colcon:Parsed command line arguments: Namespace(base_paths=['.'], build_base='build', ignore_user_meta=False, log_base=None, log_level=None, main=<bound method ListVerb.main of <colcon_package_information.verb.list.ListVerb object at 0xffffb05f4d00>>, metas=['./colcon.meta'], names_only=False, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, paths=None, paths_only=False, topological_graph=False, topological_graph_density=False, topological_graph_dot=False, topological_graph_dot_cluster=False, topological_graph_dot_include_skipped=False, topological_graph_legend=False, topological_order=False, verb_extension=<colcon_package_information.verb.list.ListVerb object at 0xffffb05f4d00>, verb_name='list', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffffb05ffe20>)
+[1.492s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[1.492s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[1.492s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[1.493s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[1.493s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[1.493s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[1.493s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/workspace/ros2_ws/src'
+[1.494s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[1.495s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[1.495s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[1.495s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[1.495s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[1.496s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[1.496s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[1.496s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[1.496s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[1.570s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[1.571s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[1.571s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[1.571s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[1.571s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[1.572s] Level 1:colcon.colcon_core.package_identification:_identify(keyboard_input) by extensions ['ignore', 'ignore_ament_install']
+[1.573s] Level 1:colcon.colcon_core.package_identification:_identify(keyboard_input) by extension 'ignore'
+[1.573s] Level 1:colcon.colcon_core.package_identification:_identify(keyboard_input) by extension 'ignore_ament_install'
+[1.573s] Level 1:colcon.colcon_core.package_identification:_identify(keyboard_input) by extensions ['colcon_pkg']
+[1.573s] Level 1:colcon.colcon_core.package_identification:_identify(keyboard_input) by extension 'colcon_pkg'
+[1.573s] Level 1:colcon.colcon_core.package_identification:_identify(keyboard_input) by extensions ['colcon_meta']
+[1.574s] Level 1:colcon.colcon_core.package_identification:_identify(keyboard_input) by extension 'colcon_meta'
+[1.574s] Level 1:colcon.colcon_core.package_identification:_identify(keyboard_input) by extensions ['ros']
+[1.574s] Level 1:colcon.colcon_core.package_identification:_identify(keyboard_input) by extension 'ros'
+[1.586s] DEBUG:colcon.colcon_core.package_identification:Package 'keyboard_input' with type 'ros.ament_python' and name 'keyboard_input'
+[1.587s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[1.588s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[1.588s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[1.588s] Level 1:colcon.colcon_core.package_identification:_identify(motor_control_node) by extensions ['ignore', 'ignore_ament_install']
+[1.589s] Level 1:colcon.colcon_core.package_identification:_identify(motor_control_node) by extension 'ignore'
+[1.589s] Level 1:colcon.colcon_core.package_identification:_identify(motor_control_node) by extension 'ignore_ament_install'
+[1.589s] Level 1:colcon.colcon_core.package_identification:_identify(motor_control_node) by extensions ['colcon_pkg']
+[1.590s] Level 1:colcon.colcon_core.package_identification:_identify(motor_control_node) by extension 'colcon_pkg'
+[1.590s] Level 1:colcon.colcon_core.package_identification:_identify(motor_control_node) by extensions ['colcon_meta']
+[1.590s] Level 1:colcon.colcon_core.package_identification:_identify(motor_control_node) by extension 'colcon_meta'
+[1.590s] Level 1:colcon.colcon_core.package_identification:_identify(motor_control_node) by extensions ['ros']
+[1.590s] Level 1:colcon.colcon_core.package_identification:_identify(motor_control_node) by extension 'ros'
+[1.594s] DEBUG:colcon.colcon_core.package_identification:Package 'motor_control_node' with type 'ros.ament_cmake' and name 'motor_control_node'
+[1.594s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[1.595s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[1.595s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[1.595s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[1.595s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
