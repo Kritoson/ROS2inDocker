@@ -1,49 +1,61 @@
 # GES ROS2 + Docker Sistem Mimarisi ve Kullanım Kılavuzu
 
-Bu doküman, GES projesinin Docker ve ROS2 altyapısı üzerinde nasıl çalıştığını, mimariyi, kullanılan nodeları, topic yapısını, dosya hiyerarşisini, build–run süreçlerini ve Jetson/PC tarafındaki ayrımları detaylı şekilde açıklar.
+GES robot platformu; Jetson üzerinde gerçek donanım çalıştıran ROS2 ortamı ile PC üzerinde simülasyon ve RViz2 görselleştirmesini tek bir Docker tabanlı mimaride birleştiren bir sistemdir. Bu README, sistemi sıfırdan kurmaktan nodeları çalıştırmaya kadar tüm adımları içerir.
 
 ---
 
 ## 1. Sistem Mimarisi
 
-GES sistemi iki farklı donanım hedefi için tasarlanmıştır:
+GES iki donanım hedefine sahiptir:
 
-* **PC / Simulation (x86_64)** → Gazebo, RViz2, simülasyon araçları, ROS2 Humble (x86) ortamı
-* **Jetson Xavier / Robot (arm64)** → Gerçek robot donanımı, motor sürücüler, sensörler, UART, GPIO
+- **PC / Simulation (x86_64)**  
+  - RViz2, Gazebo, simülasyon ve geliştirme ortamı  
+  - Docker + ROS2 Humble (x86)
 
-Bu iki taraf **aynı ROS2 workspace yapısını** kullanır, ancak **farklı Docker imajları** üzerinden build edilir.
+- **Jetson Xavier NX / Robot (ARM64)**  
+  - Gerçek robot sürücüleri, LIDAR, GPIO, UART  
+  - Docker + ROS2 Humble (ARM64) + CUDA
 
-### 1.1. Ana Mimarinin Özeti
+Her iki taraf aynı `ros2_ws` workspace yapısını kullanır; ancak farklı Dockerfile'lar ile build edilir.
 
-* Docker Compose ile **iki profil** kullanılır:
+### Mimari Blok Şeması
 
-  * `sim` → PC tarafı (x86) için ROS2 simülasyon mimarisi
-  * `robot` → Jetson ARM64 hedefli gerçek robot mimarisi
-
-* Her iki profil, aynı `ros2_ws` klasörünü kullanır.
-
-* Jetson tarafında GPU, UART, GPIO gibi donanımlar container içinde mount edilir.
-
-* PC tarafında Gazebo + RViz2 GPU hızlandırması kullanılır.
+```
+                 ┌────────────────────────────────┐
+                 │            PC (sim)            │
+                 │  - keyboard_input              │
+                 │  - RViz2                       │
+                 │  - Gazebo (opsiyonel)          │
+                 └───────────────┬────────────────┘
+                                 │ DDS / LAN
+                                 │
+                 ┌───────────────▼────────────────┐
+                 │       Jetson / Robot           │
+                 │  - motor_control               │
+                 │  - rplidar_ros (LIDAR)         │
+                 │  - gerçek sürücüler/uart/gpio  │
+                 └────────────────────────────────┘
+```
 
 ---
 
-## 2. Dosya Hiyerarşisi
+## 2. Proje Dosya Yapısı
 
 ```
 ROS2inDocker/
 │
 ├── docker-compose.yml
 ├── .env
-├── Dockerfile.pc          # x86_64 build
-├── Dockerfile.jetson      # arm64 build (Jetson)
+├── Dockerfile.pc
+├── Dockerfile.jetson
 │
 └── ros2_ws/
     ├── src/
-    │   ├── motor_control/         # Motor komutları ve sürücü kontrol nodeları
-    │   ├── keyboard_input/        # PC klavye teleop node
-    │   ├── led_control/           # Jetson GPIO LED kontrol node
-    │   └── ... diğer paketler ...
+    │   ├── motor_control/
+    │   ├── keyboard_input/
+    │   ├── rplidar_ros/
+    │   ├── led_control/
+    │   └── ...
     │
     ├── build/
     ├── install/
@@ -52,199 +64,172 @@ ROS2inDocker/
 
 ---
 
-## 3. Kullanılan Başlıca ROS2 Nodeları
+## 3. Kullanılan ROS2 Nodeları
 
-### 3.1. `keyboard_input` (PC – Simulation)
+### `keyboard_input`
+- PC’de çalışır.
+- Klavye ok tuşlarını okuyup `/cmd_vel` publish eder.
 
-* Klavyeden ok tuşlarını okur
-* `/cmd_vel` topic’ine Twist mesajı gönderir
+### `motor_control`
+- Jetson üzerinde çalışır.
+- `/cmd_vel` mesajlarını işleyip motor sürücülere gönderir.
 
-### 3.2. `motor_control`
+### `rplidar_ros`
+- Jetson’a bağlı RPLIDAR S2E sensörünü çalıştırır.
+- `/scan` LaserScan mesajı yayınlar.
 
-* Jetson üzerinde motor sürücülere hız komutu gönderir
-* `/cmd_vel` mesajlarını işler
-* Gerektiğinde UART ile motor driver iletişimi yapar
-
-### 3.3. `led_control` (Jetson)
-
-* Jetson'un GPIO pinlerini kontrol eder
-* `/led_toggle` benzeri bir topic üzerinden çalışır
+### `led_control`
+- Jetson GPIO doğrulama amaçlı test node.
 
 ---
 
 ## 4. Topic Yapısı
 
-| Topic          | Tip                   | Açıklama                            |
-| -------------- | --------------------- | ----------------------------------- |
-| `/cmd_vel`     | `geometry_msgs/Twist` | Keyboard → motor_control veri akışı |
-| `/led_toggle`  | `std_msgs/Bool`       | Jetson LED kontrol                  |
-| `/diagnostics` | `std_msgs/String`     | Sistem durumu                       |
+| Topic      | Mesaj Tipi               | Açıklama                                |
+|------------|---------------------------|------------------------------------------|
+| `/cmd_vel` | geometry_msgs/Twist       | PC sim → Jetson motor kontrol            |
+| `/scan`    | sensor_msgs/LaserScan     | Jetson LIDAR → PC RViz2                  |
+| `/diagnostics` | std_msgs/String       | Motor/Lidar durum bilgisi                |
 
----
-
-## 5. Docker Compose Mimarisi
-
-### 5.1. Sim (PC) Profili
-
-* x86 ortam için build eder
-* GPU hızlandırmalı Gazebo/RViz çalışma ortamı sağlar
-* Klavye kontrol node’unu çalıştırır
-
-### 5.2. Robot (Jetson) Profili
-
-* ARM64 build
-* Jetson cihaz erişimleri:
-
-  * `/dev/ttyUSB0` (motor driver)
-  * `/dev/gpiochip*` (GPIO)
-  * `/dev/dri` (GPU)
-
----
-
-## 6. Build ve Çalıştırma Komutları
-
-### 6.1. PC Tarafı (Simulation)
-
-İmajı build et:
+### Topic Veri Akışı
 
 ```
+PC keyboard_input → /cmd_vel → Jetson motor_control
+Jetson rplidar_ros → /scan → PC RViz2
+```
+
+---
+
+## 5. LIDAR Entegrasyonu (RPLIDAR S2E)
+
+### Cihaz izinleri (Jetson)
+```bash
+sudo usermod -aG dialout $USER
+sudo chmod 666 /dev/ttyUSB0
+```
+
+### LIDAR node başlatma
+```bash
+docker exec -it ros2_robot bash
+source /opt/ros/$ROS_DISTRO/install/setup.bash
+source /workspace/ros2_ws/install/setup.bash
+
+ros2 launch rplidar_ros rplidar_s2e_launch.py
+```
+
+### RViz2 üzerinde görüntüleme (PC)
+```bash
+rviz2
+```
+RViz → Add → LaserScan → `/scan`
+
+---
+
+## 6. Docker Compose Profilleri
+
+### Simülasyon (PC – x86_64)
+```bash
 docker compose --profile sim build
-```
-
-Simülasyonu başlat:
-
-```
 docker compose --profile sim up
 ```
 
-Container içine gir:
-
-```
+Container’a giriş:
+```bash
 docker exec -it ros2_sim bash
 ```
 
-ROS workspace’i build et:
-
+Workspace build:
+```bash
+cd /workspace/ros2_ws
+colcon build --symlink-install
 ```
-cd /workspace/ros2_ws\colcon build --symlink-install
-```
 
-Keyboard teleop başlat:
-
-```
+Keyboard teleop:
+```bash
 ros2 run keyboard_input teleop
 ```
 
 ---
 
-### 6.2. Jetson Tarafı (Robot)
-
-İmajı build et:
-
-```
+### Robot (Jetson – ARM64)
+```bash
 docker compose --profile robot build
-```
-
-Robot tarafını başlat:
-
-```
 docker compose --profile robot up
 ```
 
-Container içine gir:
-
-```
+Container’a giriş:
+```bash
 docker exec -it ros2_robot bash
 ```
 
-ROS2 build:
-
+Workspace build:
+```bash
+cd /workspace/ros2_ws
+colcon build --symlink-install
 ```
-cd /workspace/ros2_ws\colcon build --symlink-install
-```
 
-Motor kontrol node’u çalıştır:
-
-```
+Motor kontrol node:
+```bash
 ros2 run motor_control motor_control_node
+```
+
+LIDAR:
+```bash
+ros2 launch rplidar_ros rplidar_s2e_launch.py
 ```
 
 ---
 
-## 7. Jetson ve PC Arasındaki Önemli Build Farkları
+## 7. Jetson ve PC Arasındaki Build Farkları
 
-Aynı Dockerfile iki tarafta kullanılamadığı için şu ayrım vardır:
+Aynı Dockerfile her iki platformda kullanılamaz. Jetson build’inde hata veren paketler:
 
-* PC’de kullanılan paketler Jetson’da build hatası oluşturur:
+- python3-colcon-common-extensions  
+- python3-rosdep  
+- python3-vcstool  
 
-  * python3-colcon-common-extensions
-  * python3-rosdep
-  * python3-vcstool
+Bu nedenle yapı ayrıştırılmıştır:
 
-Çözüm → iki ayrı Dockerfile kullanılır (`Dockerfile.pc` ve `Dockerfile.jetson`).
-Jetson için minimal, PC için tam ROS geliştirme ortamı kuruludur.
+- **PC → Dockerfile.pc**  
+- **Jetson → Dockerfile.jetson**
 
 ---
 
 ## 8. ROS2 Test Komutları
 
-Aktif nodları listele:
-
-```
+Node list:
+```bash
 ros2 node list
 ```
 
-Topicleri listele:
-
-```
+Topic list:
+```bash
 ros2 topic list
 ```
 
-Topic echo:
-
+Topic içerik:
+```bash
+ros2 topic echo /scan
 ```
-ros2 topic echo /cmd_vel
-```
 
-Publisher test:
-
-```
-pub /diagnostics std_msgs/String "data: 'test'"
+Publish test:
+```bash
+ros2 topic pub /diagnostics std_msgs/String "data: 'test'"
 ```
 
 ---
 
-## 9. Sistem Nasıl Ayağa Kalkar?
+## 9. Sistem Başlangıç Akışı
 
-### 1) `.env` dosyası yüklenir
-
-Örn:
-
-```
-TARGET_ARCH=arm64
-ROS_DOMAIN_ID=15
-```
-
-### 2) Docker Compose seçilen profile göre imajı build eder
-
-### 3) ros_entrypoint.sh ROS ortamını source eder
-
-### 4) Workspace build edilir (`colcon build`)
-
-### 5) Sistem servisleri devreye girer
-
-* motor_control
-* keyboard_input (sim)
-* led_control
-
-### 6) ROS ağının DDS üzerinden iletişimi başlar
-
-Jetson ve PC aynı ağda çalışıyorsa otomatik discovery gerçekleşir.
+1. `.env` dosyası yüklenir  
+2. Docker Compose hedef profile göre build eder  
+3. ros_entrypoint.sh ROS ortamını source eder  
+4. `ros2_ws` colcon ile build edilir  
+5. Node’lar devreye alınır  
+6. DDS discovery ile Jetson ↔ PC otomatik bağlanır  
 
 ---
 
 ## 10. Özet
 
-Bu doküman, GES projesi için Docker + ROS2 birleşik mimarisinin nasıl çalıştığını, build süreçlerini, node-topology yapısını ve Jetson/PC tarafındaki farkları açıklayan ana referans dokümandır. Tüm geliştirme süreçleri bu README.md üzerinden izlenerek yönetilebilir.
-
----
+Bu README, GES robot platformunun **ROS2 + Docker altyapısını**, node-topology yapısını, LIDAR entegrasyonunu, build–run süreçlerini ve Jetson/PC mimari farklarını uçtan uca açıklayan temel başvuru dokümanıdır. Bu adımlar izlenerek sistem sıfırdan kurulabilir ve eksiksiz şekilde çalıştırılabilir.
