@@ -1,0 +1,64 @@
+##########################################################
+# JETSON / ARM64 – REAL ROBOT
+##########################################################
+
+ARG ROS_DISTRO=humble
+ARG L4T_TAG=r35.4.1
+FROM --platform=linux/arm64 dustynv/ros:${ROS_DISTRO}-ros-base-l4t-${L4T_TAG}
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    ROS_DISTRO=humble \
+    ROS_DOMAIN_ID=50 \
+    RMW_IMPLEMENTATION=rmw_fastrtps_cpp \
+    WORKSPACE=/workspace/ros2_ws \
+    FASTDDS_DEFAULT_PROFILES_FILE=/dds/fastdds.xml
+
+# Only minimal deps (Jetson build errors avoid)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    git \
+    vim \
+    nano \
+    locales \
+    python3-pip \
+    net-tools \
+    iputils-ping \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
+# User
+ARG USERNAME=rosuser
+ARG USER_UID=1000
+ARG USER_GID=1000
+
+RUN groupadd -g ${USER_GID} ${USERNAME} \
+ && useradd -m -u ${USER_UID} -g ${USER_GID} ${USERNAME} \
+ && mkdir -p ${WORKSPACE} /dds \
+ && chown -R ${USERNAME}:${USER_GID} ${WORKSPACE} /dds
+
+USER ${USERNAME}
+WORKDIR ${WORKSPACE}
+
+# FastDDS
+RUN echo '<?xml version="1.0"?> \
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles"> \
+  <participant profile_name="default_participant" is_default_profile="true"> \
+    <rtps><builtin><domainId>50</domainId></builtin></rtps> \
+  </participant> \
+</profiles>' > /dds/fastdds.xml
+
+# Entrypoint
+USER root
+RUN printf '%s\n' \
+'#!/bin/bash' \
+'set -e' \
+'source /opt/ros/$ROS_DISTRO/setup.bash' \
+'if [ -f "$WORKSPACE/install/setup.bash" ]; then source $WORKSPACE/install/setup.bash; fi' \
+'exec "$@"' > /ros_entrypoint.sh \
+ && chmod +x /ros_entrypoint.sh
+
+USER ${USERNAME}
+ENTRYPOINT ["/ros_entrypoint.sh"]
+CMD ["bash"]
