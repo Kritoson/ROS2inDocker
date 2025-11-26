@@ -12,9 +12,6 @@ RUN rm -f /etc/apt/sources.list.d/ros* \
  && sed -i '/packages\.ros\.org/d' /etc/apt/sources.list
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    ROS_DISTRO=humble \
-    ROS_DOMAIN_ID=50 \
-    RMW_IMPLEMENTATION=rmw_fastrtps_cpp \
     WORKSPACE=/workspace/ros2_ws \
     FASTDDS_DEFAULT_PROFILES_FILE=/dds/fastdds.xml
 

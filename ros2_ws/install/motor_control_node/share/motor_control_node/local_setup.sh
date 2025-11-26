@@ -1,0 +1,1 @@
+/workspace/ros2_ws/build/motor_control_node/ament_cmake_environment_hooks/local_setup.sh

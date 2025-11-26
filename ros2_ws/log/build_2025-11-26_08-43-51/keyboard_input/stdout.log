@@ -1,0 +1,22 @@
+running develop
+running egg_info
+creating keyboard_input.egg-info
+writing keyboard_input.egg-info/PKG-INFO
+writing dependency_links to keyboard_input.egg-info/dependency_links.txt
+writing entry points to keyboard_input.egg-info/entry_points.txt
+writing requirements to keyboard_input.egg-info/requires.txt
+writing top-level names to keyboard_input.egg-info/top_level.txt
+writing manifest file 'keyboard_input.egg-info/SOURCES.txt'
+reading manifest file 'keyboard_input.egg-info/SOURCES.txt'
+writing manifest file 'keyboard_input.egg-info/SOURCES.txt'
+running build_ext
+Creating /workspace/ros2_ws/install/keyboard_input/lib/python3.8/site-packages/keyboard-input.egg-link (link to .)
+Installing keyboard_publisher script to /workspace/ros2_ws/install/keyboard_input/lib/keyboard_input
+
+Installed /workspace/ros2_ws/build/keyboard_input
+running install_data
+creating /workspace/ros2_ws/install/keyboard_input/share/ament_index
+creating /workspace/ros2_ws/install/keyboard_input/share/ament_index/resource_index
+creating /workspace/ros2_ws/install/keyboard_input/share/ament_index/resource_index/packages
+copying resource/keyboard_input -> /workspace/ros2_ws/install/keyboard_input/share/ament_index/resource_index/packages
+copying package.xml -> /workspace/ros2_ws/install/keyboard_input/share/keyboard_input
