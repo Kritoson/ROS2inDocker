@@ -6,6 +6,11 @@ ARG ROS_DISTRO=humble
 ARG L4T_TAG=r35.4.1
 FROM --platform=linux/arm64 dustynv/ros:${ROS_DISTRO}-ros-base-l4t-${L4T_TAG}
 
+RUN rm -f /etc/apt/sources.list.d/ros* \
+ && rm -f /etc/apt/sources.list.d/ros2* \
+ && sed -i '/ros2/d' /etc/apt/sources.list \
+ && sed -i '/packages\.ros\.org/d' /etc/apt/sources.list
+
 ENV DEBIAN_FRONTEND=noninteractive \
     ROS_DISTRO=humble \
     ROS_DOMAIN_ID=50 \
@@ -54,10 +59,11 @@ USER root
 RUN printf '%s\n' \
 '#!/bin/bash' \
 'set -e' \
-'source /opt/ros/$ROS_DISTRO/setup.bash' \
+'source /opt/ros/$ROS_DISTRO/install/setup.bash' \
 'if [ -f "$WORKSPACE/install/setup.bash" ]; then source $WORKSPACE/install/setup.bash; fi' \
 'exec "$@"' > /ros_entrypoint.sh \
  && chmod +x /ros_entrypoint.sh
+RUN echo "source /opt/ros/\$ROS_DISTRO/install/setup.bash" >> /home/${USERNAME}/.bashrc
 
 USER ${USERNAME}
 ENTRYPOINT ["/ros_entrypoint.sh"]

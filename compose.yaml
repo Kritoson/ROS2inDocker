@@ -16,8 +16,6 @@ services:
     network_mode: host
     runtime: nvidia
     env_file: .env
-
-
     environment:
       DISPLAY: ${DISPLAY}
       QT_X11_NO_MITSHM: ${QT_X11_NO_MITSHM}
@@ -40,23 +38,30 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.jetson
+      args:
+        TARGET_ARCH: arm
+        ROS_DISTRO: humble
+        USERNAME: dev
+        USER_UID: 1000
+        USER_GID: 1000
+        WORKSPACE: /workspace/ros2_ws
     image: ros2_jetson
     container_name: ros2_robot
     network_mode: host
     runtime: nvidia
     env_file: .env
-
-    command: ["bash", "-c", "sleep infinity"]
-
     privileged: true
     group_add:
       - dialout
-
+      - "44"
     environment:
-      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID}
-      RMW_IMPLEMENTATION: ${RMW_IMPLEMENTATION}
-      FASTDDS_DEFAULT_PROFILES_FILE: /dds/fastdds.xml
-
+      - ROS_DOMAIN_ID=${ROS_DOMAIN_ID}
+      - RMW_IMPLEMENTATION=${RMW_IMPLEMENTATION}
+      - FASTDDS_DEFAULT_PROFILES_FILE=/dds/fastdds.xml
+    devices:
+      - /dev/video0:/dev/video0
     volumes:
       - ${ROS_WORKSPACE_JETSON}:/workspace/ros2_ws
       - /dev/ttyUSB0:/dev/ttyUSB0
+    #command: ["bash", "-c", "sleep infinity"]
+    command: ["sleep", "infinity"]
