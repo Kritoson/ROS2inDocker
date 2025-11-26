@@ -1,0 +1,2 @@
+[console_scripts]
+obstacle_detector = obstacle_detector.obstacle_detector:main

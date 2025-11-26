@@ -1,0 +1,52 @@
+[6.816s] Invoking command in '/workspace/ros2_ws/build/obstacle_detector': PYTHONPATH=/workspace/ros2_ws/build/obstacle_detector/prefix_override:/workspace/ros2_ws/install/obstacle_detector/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /workspace/ros2_ws/build/obstacle_detector/build --no-deps install_data
+[9.166s] running develop
+[9.167s] /usr/local/lib/python3.8/dist-packages/setuptools/command/develop.py:40: EasyInstallDeprecationWarning: easy_install command is deprecated.
+[9.167s] !!
+[9.167s] 
+[9.168s]         ********************************************************************************
+[9.168s]         Please avoid running ``setup.py`` and ``easy_install``.
+[9.168s]         Instead, use pypa/build, pypa/installer or other
+[9.168s]         standards-based tools.
+[9.169s] 
+[9.169s]         See https://github.com/pypa/setuptools/issues/917 for details.
+[9.169s]         ********************************************************************************
+[9.170s] 
+[9.170s] !!
+[9.170s]   easy_install.initialize_options(self)
+[9.455s] /usr/local/lib/python3.8/dist-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+[9.456s] !!
+[9.456s] 
+[9.456s]         ********************************************************************************
+[9.457s]         Please avoid running ``setup.py`` directly.
+[9.457s]         Instead, use pypa/build, pypa/installer or other
+[9.457s]         standards-based tools.
+[9.458s] 
+[9.458s]         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+[9.458s]         ********************************************************************************
+[9.459s] 
+[9.459s] !!
+[9.459s]   self.initialize_options()
+[10.194s] running egg_info
+[10.195s] creating obstacle_detector.egg-info
+[10.262s] writing obstacle_detector.egg-info/PKG-INFO
+[10.264s] writing dependency_links to obstacle_detector.egg-info/dependency_links.txt
+[10.268s] writing entry points to obstacle_detector.egg-info/entry_points.txt
+[10.269s] writing requirements to obstacle_detector.egg-info/requires.txt
+[10.269s] writing top-level names to obstacle_detector.egg-info/top_level.txt
+[10.271s] writing manifest file 'obstacle_detector.egg-info/SOURCES.txt'
+[10.389s] reading manifest file 'obstacle_detector.egg-info/SOURCES.txt'
+[10.391s] writing manifest file 'obstacle_detector.egg-info/SOURCES.txt'
+[10.669s] running build_ext
+[10.670s] Creating /workspace/ros2_ws/install/obstacle_detector/lib/python3.8/site-packages/obstacle-detector.egg-link (link to .)
+[10.670s] Installing obstacle_detector script to /workspace/ros2_ws/install/obstacle_detector/lib/obstacle_detector
+[10.671s] 
+[10.671s] Installed /workspace/ros2_ws/build/obstacle_detector
+[10.672s] running install_data
+[10.674s] creating /workspace/ros2_ws/install/obstacle_detector/share/ament_index
+[10.677s] creating /workspace/ros2_ws/install/obstacle_detector/share/ament_index/resource_index
+[10.677s] creating /workspace/ros2_ws/install/obstacle_detector/share/ament_index/resource_index/packages
+[10.678s] copying resource/obstacle_detector -> /workspace/ros2_ws/install/obstacle_detector/share/ament_index/resource_index/packages
+[10.678s] copying package.xml -> /workspace/ros2_ws/install/obstacle_detector/share/obstacle_detector
+[10.679s] creating /workspace/ros2_ws/install/obstacle_detector/share/obstacle_detector/launch
+[10.679s] copying launch/front_detector.launch.py -> /workspace/ros2_ws/install/obstacle_detector/share/obstacle_detector/launch
+[10.825s] Invoked command in '/workspace/ros2_ws/build/obstacle_detector' returned '0': PYTHONPATH=/workspace/ros2_ws/build/obstacle_detector/prefix_override:/workspace/ros2_ws/install/obstacle_detector/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /workspace/ros2_ws/build/obstacle_detector/build --no-deps install_data

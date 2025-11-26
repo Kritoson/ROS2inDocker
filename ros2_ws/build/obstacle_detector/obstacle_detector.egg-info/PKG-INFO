@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: obstacle-detector
+Version: 0.0.1
+Summary: Front obstacle detector for LIDAR
+Maintainer: dev
+Maintainer-email: test@example.com
+License: Apache-2.0

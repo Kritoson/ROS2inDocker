@@ -1,1 +1,1 @@
-/opt/ros/humble/install
+/workspace/ros2_ws/install/obstacle_detector:/workspace/ros2_ws/install/sllidar_ros2:/workspace/ros2_ws/install/motor_control_node:/workspace/ros2_ws/install/keyboard_input:/opt/ros/humble/install

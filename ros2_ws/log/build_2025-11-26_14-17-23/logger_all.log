@@ -1,0 +1,376 @@
+[1.030s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[1.030s] DEBUG:colcon:Parsed command line arguments: Namespace(ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffff9a3a29a0>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=4, paths=None, symlink_install=True, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffff9a3a29a0>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffff9a31c370>)
+[1.197s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[1.198s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[1.198s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[1.198s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[1.198s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[1.199s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[1.199s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/workspace/ros2_ws'
+[1.199s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[1.200s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[1.200s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[1.200s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[1.201s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[1.201s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[1.201s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[1.201s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[1.201s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[1.256s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[1.256s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[1.257s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[1.257s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[1.257s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[1.257s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[1.258s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[1.258s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[1.258s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[1.259s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[1.259s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[1.259s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[1.260s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[1.260s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[1.260s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[1.260s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[1.261s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[1.261s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[1.261s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[1.261s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[1.261s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[1.261s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[1.262s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[1.262s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[1.262s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[1.262s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[1.262s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[1.262s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[1.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/keyboard_input) by extensions ['ignore', 'ignore_ament_install']
+[1.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/keyboard_input) by extension 'ignore'
+[1.263s] Level 1:colcon.colcon_core.package_identification:_identify(src/keyboard_input) by extension 'ignore_ament_install'
+[1.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/keyboard_input) by extensions ['colcon_pkg']
+[1.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/keyboard_input) by extension 'colcon_pkg'
+[1.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/keyboard_input) by extensions ['colcon_meta']
+[1.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/keyboard_input) by extension 'colcon_meta'
+[1.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/keyboard_input) by extensions ['ros']
+[1.264s] Level 1:colcon.colcon_core.package_identification:_identify(src/keyboard_input) by extension 'ros'
+[1.273s] DEBUG:colcon.colcon_core.package_identification:Package 'src/keyboard_input' with type 'ros.ament_python' and name 'keyboard_input'
+[1.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/motor_control_node) by extensions ['ignore', 'ignore_ament_install']
+[1.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/motor_control_node) by extension 'ignore'
+[1.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/motor_control_node) by extension 'ignore_ament_install'
+[1.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/motor_control_node) by extensions ['colcon_pkg']
+[1.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/motor_control_node) by extension 'colcon_pkg'
+[1.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/motor_control_node) by extensions ['colcon_meta']
+[1.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/motor_control_node) by extension 'colcon_meta'
+[1.275s] Level 1:colcon.colcon_core.package_identification:_identify(src/motor_control_node) by extensions ['ros']
+[1.275s] Level 1:colcon.colcon_core.package_identification:_identify(src/motor_control_node) by extension 'ros'
+[1.277s] DEBUG:colcon.colcon_core.package_identification:Package 'src/motor_control_node' with type 'ros.ament_cmake' and name 'motor_control_node'
+[1.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/movement_controller) by extensions ['ignore', 'ignore_ament_install']
+[1.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/movement_controller) by extension 'ignore'
+[1.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/movement_controller) by extension 'ignore_ament_install'
+[1.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/movement_controller) by extensions ['colcon_pkg']
+[1.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/movement_controller) by extension 'colcon_pkg'
+[1.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/movement_controller) by extensions ['colcon_meta']
+[1.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/movement_controller) by extension 'colcon_meta'
+[1.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/movement_controller) by extensions ['ros']
+[1.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/movement_controller) by extension 'ros'
+[1.281s] DEBUG:colcon.colcon_core.package_identification:Package 'src/movement_controller' with type 'ros.ament_python' and name 'movement_controller'
+[1.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_detector) by extensions ['ignore', 'ignore_ament_install']
+[1.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_detector) by extension 'ignore'
+[1.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_detector) by extension 'ignore_ament_install'
+[1.282s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_detector) by extensions ['colcon_pkg']
+[1.282s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_detector) by extension 'colcon_pkg'
+[1.282s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_detector) by extensions ['colcon_meta']
+[1.282s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_detector) by extension 'colcon_meta'
+[1.282s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_detector) by extensions ['ros']
+[1.282s] Level 1:colcon.colcon_core.package_identification:_identify(src/obstacle_detector) by extension 'ros'
+[1.284s] DEBUG:colcon.colcon_core.package_identification:Package 'src/obstacle_detector' with type 'ros.ament_python' and name 'obstacle_detector'
+[1.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extensions ['ignore', 'ignore_ament_install']
+[1.285s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extension 'ignore'
+[1.285s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extension 'ignore_ament_install'
+[1.285s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extensions ['colcon_pkg']
+[1.285s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extension 'colcon_pkg'
+[1.285s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extensions ['colcon_meta']
+[1.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extension 'colcon_meta'
+[1.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extensions ['ros']
+[1.286s] Level 1:colcon.colcon_core.package_identification:_identify(src/sllidar_ros2) by extension 'ros'
+[1.288s] DEBUG:colcon.colcon_core.package_identification:Package 'src/sllidar_ros2' with type 'ros.ament_cmake' and name 'sllidar_ros2'
+[1.289s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[1.289s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[1.289s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[1.289s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[1.289s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[1.390s] Level 5:colcon.colcon_core.verb:set package 'keyboard_input' build argument 'cmake_args' from command line to 'None'
+[1.390s] Level 5:colcon.colcon_core.verb:set package 'keyboard_input' build argument 'cmake_target' from command line to 'None'
+[1.390s] Level 5:colcon.colcon_core.verb:set package 'keyboard_input' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.390s] Level 5:colcon.colcon_core.verb:set package 'keyboard_input' build argument 'cmake_clean_cache' from command line to 'False'
+[1.391s] Level 5:colcon.colcon_core.verb:set package 'keyboard_input' build argument 'cmake_clean_first' from command line to 'False'
+[1.391s] Level 5:colcon.colcon_core.verb:set package 'keyboard_input' build argument 'cmake_force_configure' from command line to 'False'
+[1.391s] Level 5:colcon.colcon_core.verb:set package 'keyboard_input' build argument 'ament_cmake_args' from command line to 'None'
+[1.391s] Level 5:colcon.colcon_core.verb:set package 'keyboard_input' build argument 'catkin_cmake_args' from command line to 'None'
+[1.391s] Level 5:colcon.colcon_core.verb:set package 'keyboard_input' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.391s] DEBUG:colcon.colcon_core.verb:Building package 'keyboard_input' with the following arguments: {'ament_cmake_args': None, 'build_base': '/workspace/ros2_ws/build/keyboard_input', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/workspace/ros2_ws/install/keyboard_input', 'merge_install': False, 'path': '/workspace/ros2_ws/src/keyboard_input', 'symlink_install': True, 'test_result_base': None}
+[1.396s] Level 5:colcon.colcon_core.verb:set package 'motor_control_node' build argument 'cmake_args' from command line to 'None'
+[1.397s] Level 5:colcon.colcon_core.verb:set package 'motor_control_node' build argument 'cmake_target' from command line to 'None'
+[1.397s] Level 5:colcon.colcon_core.verb:set package 'motor_control_node' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.397s] Level 5:colcon.colcon_core.verb:set package 'motor_control_node' build argument 'cmake_clean_cache' from command line to 'False'
+[1.397s] Level 5:colcon.colcon_core.verb:set package 'motor_control_node' build argument 'cmake_clean_first' from command line to 'False'
+[1.397s] Level 5:colcon.colcon_core.verb:set package 'motor_control_node' build argument 'cmake_force_configure' from command line to 'False'
+[1.397s] Level 5:colcon.colcon_core.verb:set package 'motor_control_node' build argument 'ament_cmake_args' from command line to 'None'
+[1.397s] Level 5:colcon.colcon_core.verb:set package 'motor_control_node' build argument 'catkin_cmake_args' from command line to 'None'
+[1.397s] Level 5:colcon.colcon_core.verb:set package 'motor_control_node' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.398s] DEBUG:colcon.colcon_core.verb:Building package 'motor_control_node' with the following arguments: {'ament_cmake_args': None, 'build_base': '/workspace/ros2_ws/build/motor_control_node', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/workspace/ros2_ws/install/motor_control_node', 'merge_install': False, 'path': '/workspace/ros2_ws/src/motor_control_node', 'symlink_install': True, 'test_result_base': None}
+[1.403s] Level 5:colcon.colcon_core.verb:set package 'movement_controller' build argument 'cmake_args' from command line to 'None'
+[1.403s] Level 5:colcon.colcon_core.verb:set package 'movement_controller' build argument 'cmake_target' from command line to 'None'
+[1.403s] Level 5:colcon.colcon_core.verb:set package 'movement_controller' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.403s] Level 5:colcon.colcon_core.verb:set package 'movement_controller' build argument 'cmake_clean_cache' from command line to 'False'
+[1.403s] Level 5:colcon.colcon_core.verb:set package 'movement_controller' build argument 'cmake_clean_first' from command line to 'False'
+[1.403s] Level 5:colcon.colcon_core.verb:set package 'movement_controller' build argument 'cmake_force_configure' from command line to 'False'
+[1.404s] Level 5:colcon.colcon_core.verb:set package 'movement_controller' build argument 'ament_cmake_args' from command line to 'None'
+[1.404s] Level 5:colcon.colcon_core.verb:set package 'movement_controller' build argument 'catkin_cmake_args' from command line to 'None'
+[1.404s] Level 5:colcon.colcon_core.verb:set package 'movement_controller' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.404s] DEBUG:colcon.colcon_core.verb:Building package 'movement_controller' with the following arguments: {'ament_cmake_args': None, 'build_base': '/workspace/ros2_ws/build/movement_controller', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/workspace/ros2_ws/install/movement_controller', 'merge_install': False, 'path': '/workspace/ros2_ws/src/movement_controller', 'symlink_install': True, 'test_result_base': None}
+[1.409s] Level 5:colcon.colcon_core.verb:set package 'obstacle_detector' build argument 'cmake_args' from command line to 'None'
+[1.409s] Level 5:colcon.colcon_core.verb:set package 'obstacle_detector' build argument 'cmake_target' from command line to 'None'
+[1.409s] Level 5:colcon.colcon_core.verb:set package 'obstacle_detector' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.410s] Level 5:colcon.colcon_core.verb:set package 'obstacle_detector' build argument 'cmake_clean_cache' from command line to 'False'
+[1.410s] Level 5:colcon.colcon_core.verb:set package 'obstacle_detector' build argument 'cmake_clean_first' from command line to 'False'
+[1.410s] Level 5:colcon.colcon_core.verb:set package 'obstacle_detector' build argument 'cmake_force_configure' from command line to 'False'
+[1.410s] Level 5:colcon.colcon_core.verb:set package 'obstacle_detector' build argument 'ament_cmake_args' from command line to 'None'
+[1.410s] Level 5:colcon.colcon_core.verb:set package 'obstacle_detector' build argument 'catkin_cmake_args' from command line to 'None'
+[1.410s] Level 5:colcon.colcon_core.verb:set package 'obstacle_detector' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.410s] DEBUG:colcon.colcon_core.verb:Building package 'obstacle_detector' with the following arguments: {'ament_cmake_args': None, 'build_base': '/workspace/ros2_ws/build/obstacle_detector', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/workspace/ros2_ws/install/obstacle_detector', 'merge_install': False, 'path': '/workspace/ros2_ws/src/obstacle_detector', 'symlink_install': True, 'test_result_base': None}
+[1.415s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'cmake_args' from command line to 'None'
+[1.416s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'cmake_target' from command line to 'None'
+[1.416s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.416s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'cmake_clean_cache' from command line to 'False'
+[1.416s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'cmake_clean_first' from command line to 'False'
+[1.416s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'cmake_force_configure' from command line to 'False'
+[1.416s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'ament_cmake_args' from command line to 'None'
+[1.416s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'catkin_cmake_args' from command line to 'None'
+[1.416s] Level 5:colcon.colcon_core.verb:set package 'sllidar_ros2' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.416s] DEBUG:colcon.colcon_core.verb:Building package 'sllidar_ros2' with the following arguments: {'ament_cmake_args': None, 'build_base': '/workspace/ros2_ws/build/sllidar_ros2', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/workspace/ros2_ws/install/sllidar_ros2', 'merge_install': False, 'path': '/workspace/ros2_ws/src/sllidar_ros2', 'symlink_install': True, 'test_result_base': None}
+[1.421s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[1.444s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[1.446s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/workspace/ros2_ws/src/keyboard_input' with build type 'ament_python'
+[1.447s] Level 1:colcon.colcon_core.shell:create_environment_hook('keyboard_input', 'ament_prefix_path')
+[1.475s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[1.477s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/keyboard_input/share/keyboard_input/hook/ament_prefix_path.ps1'
+[1.480s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/workspace/ros2_ws/install/keyboard_input/share/keyboard_input/hook/ament_prefix_path.dsv'
+[1.481s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/keyboard_input/share/keyboard_input/hook/ament_prefix_path.sh'
+[1.494s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.495s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.501s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/workspace/ros2_ws/install/obstacle_detector' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.501s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/workspace/ros2_ws/install/sllidar_ros2' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.501s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/workspace/ros2_ws/install/motor_control_node' in the environment variable AMENT_PREFIX_PATH doesn't exist
+[1.503s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/workspace/ros2_ws/install/sllidar_ros2' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.503s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/workspace/ros2_ws/install/obstacle_detector' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.503s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/workspace/ros2_ws/install/motor_control_node' in the environment variable CMAKE_PREFIX_PATH doesn't exist
+[1.562s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/workspace/ros2_ws/src/motor_control_node' with build type 'ament_cmake'
+[1.565s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/workspace/ros2_ws/src/motor_control_node'
+[1.585s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.587s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.645s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/workspace/ros2_ws/src/movement_controller' with build type 'ament_python'
+[1.648s] Level 1:colcon.colcon_core.shell:create_environment_hook('movement_controller', 'ament_prefix_path')
+[1.665s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/movement_controller/share/movement_controller/hook/ament_prefix_path.ps1'
+[1.670s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/workspace/ros2_ws/install/movement_controller/share/movement_controller/hook/ament_prefix_path.dsv'
+[1.671s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/movement_controller/share/movement_controller/hook/ament_prefix_path.sh'
+[1.688s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.688s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.743s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/workspace/ros2_ws/src/obstacle_detector' with build type 'ament_python'
+[1.746s] Level 1:colcon.colcon_core.shell:create_environment_hook('obstacle_detector', 'ament_prefix_path')
+[1.764s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/obstacle_detector/share/obstacle_detector/hook/ament_prefix_path.ps1'
+[1.770s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/workspace/ros2_ws/install/obstacle_detector/share/obstacle_detector/hook/ament_prefix_path.dsv'
+[1.772s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/obstacle_detector/share/obstacle_detector/hook/ament_prefix_path.sh'
+[1.789s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.789s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.590s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/workspace/ros2_ws/src/keyboard_input'
+[2.605s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.605s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.672s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/workspace/ros2_ws/build/motor_control_node': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/workspace/ros2_ws/install/keyboard_input /usr/local/bin/cmake /workspace/ros2_ws/src/motor_control_node -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspace/ros2_ws/install/motor_control_node
+[3.469s] WARNING:colcon.colcon_ros.task.ament_python.build:Package 'movement_controller' doesn't explicitly install a marker in the package index (colcon-ros currently does it implicitly but that fallback will be removed in the future)
+[3.474s] WARNING:colcon.colcon_ros.task.ament_python.build:Package 'movement_controller' doesn't explicitly install the 'package.xml' file (colcon-ros currently does it implicitly but that fallback will be removed in the future)
+[3.475s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/workspace/ros2_ws/src/movement_controller'
+[3.490s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.490s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[4.362s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/workspace/ros2_ws/src/obstacle_detector'
+[4.378s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[4.379s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[8.400s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/workspace/ros2_ws/build/keyboard_input': PYTHONPATH=/workspace/ros2_ws/build/keyboard_input/prefix_override:/workspace/ros2_ws/install/keyboard_input/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /workspace/ros2_ws/build/keyboard_input/build --no-deps install_data
+[8.514s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/workspace/ros2_ws/build/movement_controller': PYTHONPATH=/workspace/ros2_ws/build/movement_controller/prefix_override:/workspace/ros2_ws/install/movement_controller/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /workspace/ros2_ws/build/movement_controller/build --no-deps
+[8.562s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/workspace/ros2_ws/build/obstacle_detector': PYTHONPATH=/workspace/ros2_ws/build/obstacle_detector/prefix_override:/workspace/ros2_ws/install/obstacle_detector/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /workspace/ros2_ws/build/obstacle_detector/build --no-deps install_data
+[11.709s] Level 1:colcon.colcon_core.shell:create_environment_hook('keyboard_input', 'pythonpath_develop')
+[11.711s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/workspace/ros2_ws/build/keyboard_input' returned '0': PYTHONPATH=/workspace/ros2_ws/build/keyboard_input/prefix_override:/workspace/ros2_ws/install/keyboard_input/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /workspace/ros2_ws/build/keyboard_input/build --no-deps install_data
+[11.731s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/build/keyboard_input/share/keyboard_input/hook/pythonpath_develop.ps1'
+[11.734s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/workspace/ros2_ws/build/keyboard_input/share/keyboard_input/hook/pythonpath_develop.dsv'
+[11.736s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/build/keyboard_input/share/keyboard_input/hook/pythonpath_develop.sh'
+[11.778s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/keyboard_input' for CMake module files
+[11.780s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/keyboard_input' for CMake config files
+[11.785s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/keyboard_input/lib'
+[11.786s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/keyboard_input/bin'
+[11.787s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/keyboard_input/lib/pkgconfig/keyboard_input.pc'
+[11.788s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/keyboard_input/lib/python3.8/site-packages'
+[11.788s] Level 1:colcon.colcon_core.shell:create_environment_hook('keyboard_input', 'pythonpath')
+[11.810s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/keyboard_input/share/keyboard_input/hook/pythonpath.ps1'
+[11.812s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/workspace/ros2_ws/install/keyboard_input/share/keyboard_input/hook/pythonpath.dsv'
+[11.814s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/keyboard_input/share/keyboard_input/hook/pythonpath.sh'
+[11.815s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/keyboard_input/bin'
+[11.816s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(keyboard_input)
+[11.828s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/keyboard_input/share/keyboard_input/package.ps1'
+[11.832s] INFO:colcon.colcon_core.shell:Creating package descriptor '/workspace/ros2_ws/install/keyboard_input/share/keyboard_input/package.dsv'
+[11.835s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/keyboard_input/share/keyboard_input/package.sh'
+[11.838s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/keyboard_input/share/keyboard_input/package.bash'
+[11.841s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/keyboard_input/share/keyboard_input/package.zsh'
+[11.844s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/workspace/ros2_ws/install/keyboard_input/share/colcon-core/packages/keyboard_input)
+[11.856s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/workspace/ros2_ws/src/sllidar_ros2' with build type 'ament_cmake'
+[11.857s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/workspace/ros2_ws/src/sllidar_ros2'
+[11.878s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[11.878s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[11.984s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/workspace/ros2_ws/build/sllidar_ros2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/workspace/ros2_ws/install/keyboard_input /usr/local/bin/cmake /workspace/ros2_ws/src/sllidar_ros2 -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspace/ros2_ws/install/sllidar_ros2
+[12.339s] Level 1:colcon.colcon_core.shell:create_environment_hook('movement_controller', 'pythonpath_develop')
+[12.357s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/workspace/ros2_ws/build/movement_controller' returned '0': PYTHONPATH=/workspace/ros2_ws/build/movement_controller/prefix_override:/workspace/ros2_ws/install/movement_controller/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /workspace/ros2_ws/build/movement_controller/build --no-deps
+[12.360s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/build/movement_controller/share/movement_controller/hook/pythonpath_develop.ps1'
+[12.364s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/workspace/ros2_ws/build/movement_controller/share/movement_controller/hook/pythonpath_develop.dsv'
+[12.366s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/build/movement_controller/share/movement_controller/hook/pythonpath_develop.sh'
+[12.388s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/movement_controller' for CMake module files
+[12.391s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/movement_controller' for CMake config files
+[12.395s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/movement_controller/lib'
+[12.396s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/movement_controller/bin'
+[12.396s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/movement_controller/lib/pkgconfig/movement_controller.pc'
+[12.398s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/movement_controller/lib/python3.8/site-packages'
+[12.398s] Level 1:colcon.colcon_core.shell:create_environment_hook('movement_controller', 'pythonpath')
+[12.414s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/movement_controller/share/movement_controller/hook/pythonpath.ps1'
+[12.421s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/workspace/ros2_ws/install/movement_controller/share/movement_controller/hook/pythonpath.dsv'
+[12.427s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/movement_controller/share/movement_controller/hook/pythonpath.sh'
+[12.430s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/movement_controller/bin'
+[12.430s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(movement_controller)
+[12.445s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/movement_controller/share/movement_controller/package.ps1'
+[12.448s] INFO:colcon.colcon_core.shell:Creating package descriptor '/workspace/ros2_ws/install/movement_controller/share/movement_controller/package.dsv'
+[12.450s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/movement_controller/share/movement_controller/package.sh'
+[12.453s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/movement_controller/share/movement_controller/package.bash'
+[12.455s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/movement_controller/share/movement_controller/package.zsh'
+[12.459s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/workspace/ros2_ws/install/movement_controller/share/colcon-core/packages/movement_controller)
+[12.558s] Level 1:colcon.colcon_core.shell:create_environment_hook('obstacle_detector', 'pythonpath_develop')
+[12.571s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/workspace/ros2_ws/build/obstacle_detector' returned '0': PYTHONPATH=/workspace/ros2_ws/build/obstacle_detector/prefix_override:/workspace/ros2_ws/install/obstacle_detector/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /workspace/ros2_ws/build/obstacle_detector/build --no-deps install_data
+[12.573s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/build/obstacle_detector/share/obstacle_detector/hook/pythonpath_develop.ps1'
+[12.577s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/workspace/ros2_ws/build/obstacle_detector/share/obstacle_detector/hook/pythonpath_develop.dsv'
+[12.580s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/build/obstacle_detector/share/obstacle_detector/hook/pythonpath_develop.sh'
+[12.600s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/obstacle_detector' for CMake module files
+[12.602s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/obstacle_detector' for CMake config files
+[12.604s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/obstacle_detector/lib'
+[12.605s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/obstacle_detector/bin'
+[12.605s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/obstacle_detector/lib/pkgconfig/obstacle_detector.pc'
+[12.606s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/obstacle_detector/lib/python3.8/site-packages'
+[12.606s] Level 1:colcon.colcon_core.shell:create_environment_hook('obstacle_detector', 'pythonpath')
+[12.617s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/obstacle_detector/share/obstacle_detector/hook/pythonpath.ps1'
+[12.619s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/workspace/ros2_ws/install/obstacle_detector/share/obstacle_detector/hook/pythonpath.dsv'
+[12.620s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/obstacle_detector/share/obstacle_detector/hook/pythonpath.sh'
+[12.622s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/obstacle_detector/bin'
+[12.622s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(obstacle_detector)
+[12.633s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/obstacle_detector/share/obstacle_detector/package.ps1'
+[12.637s] INFO:colcon.colcon_core.shell:Creating package descriptor '/workspace/ros2_ws/install/obstacle_detector/share/obstacle_detector/package.dsv'
+[12.640s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/obstacle_detector/share/obstacle_detector/package.sh'
+[12.642s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/obstacle_detector/share/obstacle_detector/package.bash'
+[12.644s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/obstacle_detector/share/obstacle_detector/package.zsh'
+[12.645s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/workspace/ros2_ws/install/obstacle_detector/share/colcon-core/packages/obstacle_detector)
+[14.903s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/workspace/ros2_ws/build/motor_control_node' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/workspace/ros2_ws/install/keyboard_input /usr/local/bin/cmake /workspace/ros2_ws/src/motor_control_node -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspace/ros2_ws/install/motor_control_node
+[14.911s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/workspace/ros2_ws/build/motor_control_node': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/workspace/ros2_ws/install/keyboard_input /usr/local/bin/cmake --build /workspace/ros2_ws/build/motor_control_node -- -j4 -l4
+[22.471s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/workspace/ros2_ws/build/sllidar_ros2' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/workspace/ros2_ws/install/keyboard_input /usr/local/bin/cmake /workspace/ros2_ws/src/sllidar_ros2 -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/workspace/ros2_ws/install/sllidar_ros2
+[22.485s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/workspace/ros2_ws/build/sllidar_ros2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/workspace/ros2_ws/install/keyboard_input /usr/local/bin/cmake --build /workspace/ros2_ws/build/sllidar_ros2 -- -j4 -l4
+[74.025s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/workspace/ros2_ws/build/sllidar_ros2' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/workspace/ros2_ws/install/keyboard_input /usr/local/bin/cmake --build /workspace/ros2_ws/build/sllidar_ros2 -- -j4 -l4
+[74.568s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/workspace/ros2_ws/build/sllidar_ros2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/workspace/ros2_ws/install/keyboard_input /usr/local/bin/cmake --install /workspace/ros2_ws/build/sllidar_ros2
+[75.342s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(sllidar_ros2)
+[75.359s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/workspace/ros2_ws/build/sllidar_ros2' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/workspace/ros2_ws/install/keyboard_input /usr/local/bin/cmake --install /workspace/ros2_ws/build/sllidar_ros2
+[75.368s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/sllidar_ros2' for CMake module files
+[75.371s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/sllidar_ros2' for CMake config files
+[75.375s] Level 1:colcon.colcon_core.shell:create_environment_hook('sllidar_ros2', 'cmake_prefix_path')
+[75.388s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/hook/cmake_prefix_path.ps1'
+[75.394s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/hook/cmake_prefix_path.dsv'
+[75.395s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/hook/cmake_prefix_path.sh'
+[75.398s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/sllidar_ros2/lib'
+[75.399s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/sllidar_ros2/bin'
+[75.399s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/sllidar_ros2/lib/pkgconfig/sllidar_ros2.pc'
+[75.400s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/sllidar_ros2/lib/python3.8/site-packages'
+[75.401s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/sllidar_ros2/bin'
+[75.413s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/package.ps1'
+[75.416s] INFO:colcon.colcon_core.shell:Creating package descriptor '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/package.dsv'
+[75.418s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/package.sh'
+[75.422s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/package.bash'
+[75.424s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/package.zsh'
+[75.426s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/workspace/ros2_ws/install/sllidar_ros2/share/colcon-core/packages/sllidar_ros2)
+[75.807s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(sllidar_ros2)
+[75.826s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/sllidar_ros2' for CMake module files
+[75.830s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/sllidar_ros2' for CMake config files
+[75.832s] Level 1:colcon.colcon_core.shell:create_environment_hook('sllidar_ros2', 'cmake_prefix_path')
+[75.845s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/hook/cmake_prefix_path.ps1'
+[75.849s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/hook/cmake_prefix_path.dsv'
+[75.850s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/hook/cmake_prefix_path.sh'
+[75.853s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/sllidar_ros2/lib'
+[75.853s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/sllidar_ros2/bin'
+[75.854s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/sllidar_ros2/lib/pkgconfig/sllidar_ros2.pc'
+[75.855s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/sllidar_ros2/lib/python3.8/site-packages'
+[75.856s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/sllidar_ros2/bin'
+[75.866s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/package.ps1'
+[75.869s] INFO:colcon.colcon_core.shell:Creating package descriptor '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/package.dsv'
+[75.871s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/package.sh'
+[75.874s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/package.bash'
+[75.876s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/package.zsh'
+[75.877s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/workspace/ros2_ws/install/sllidar_ros2/share/colcon-core/packages/sllidar_ros2)
+[90.648s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/workspace/ros2_ws/build/motor_control_node' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/workspace/ros2_ws/install/keyboard_input /usr/local/bin/cmake --build /workspace/ros2_ws/build/motor_control_node -- -j4 -l4
+[90.857s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/workspace/ros2_ws/build/motor_control_node': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/workspace/ros2_ws/install/keyboard_input /usr/local/bin/cmake --install /workspace/ros2_ws/build/motor_control_node
+[91.203s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(motor_control_node)
+[91.227s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/workspace/ros2_ws/build/motor_control_node' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/workspace/ros2_ws/install/keyboard_input /usr/local/bin/cmake --install /workspace/ros2_ws/build/motor_control_node
+[91.233s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/motor_control_node' for CMake module files
+[91.237s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/motor_control_node' for CMake config files
+[91.239s] Level 1:colcon.colcon_core.shell:create_environment_hook('motor_control_node', 'cmake_prefix_path')
+[91.251s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/hook/cmake_prefix_path.ps1'
+[91.254s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/hook/cmake_prefix_path.dsv'
+[91.255s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/hook/cmake_prefix_path.sh'
+[91.257s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/motor_control_node/lib'
+[91.258s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/motor_control_node/bin'
+[91.258s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/motor_control_node/lib/pkgconfig/motor_control_node.pc'
+[91.259s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/motor_control_node/lib/python3.8/site-packages'
+[91.260s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/motor_control_node/bin'
+[91.270s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/package.ps1'
+[91.273s] INFO:colcon.colcon_core.shell:Creating package descriptor '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/package.dsv'
+[91.275s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/package.sh'
+[91.277s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/package.bash'
+[91.278s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/package.zsh'
+[91.279s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/workspace/ros2_ws/install/motor_control_node/share/colcon-core/packages/motor_control_node)
+[91.484s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(motor_control_node)
+[91.504s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/motor_control_node' for CMake module files
+[91.507s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/motor_control_node' for CMake config files
+[91.509s] Level 1:colcon.colcon_core.shell:create_environment_hook('motor_control_node', 'cmake_prefix_path')
+[91.519s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/hook/cmake_prefix_path.ps1'
+[91.522s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/hook/cmake_prefix_path.dsv'
+[91.524s] INFO:colcon.colcon_core.shell:Creating environment hook '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/hook/cmake_prefix_path.sh'
+[91.526s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/motor_control_node/lib'
+[91.527s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/motor_control_node/bin'
+[91.527s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/motor_control_node/lib/pkgconfig/motor_control_node.pc'
+[91.528s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/motor_control_node/lib/python3.8/site-packages'
+[91.529s] Level 1:colcon.colcon_core.environment:checking '/workspace/ros2_ws/install/motor_control_node/bin'
+[91.539s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/package.ps1'
+[91.541s] INFO:colcon.colcon_core.shell:Creating package descriptor '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/package.dsv'
+[91.543s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/package.sh'
+[91.545s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/package.bash'
+[91.546s] INFO:colcon.colcon_core.shell:Creating package script '/workspace/ros2_ws/install/motor_control_node/share/motor_control_node/package.zsh'
+[91.548s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/workspace/ros2_ws/install/motor_control_node/share/colcon-core/packages/motor_control_node)
+[91.549s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[91.551s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[91.552s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[91.552s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[91.585s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[91.586s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[91.586s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[91.586s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[91.596s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.Spawn.ExecFailed: /usr/bin/dbus-launch terminated abnormally without any error message
+[91.598s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[91.615s] INFO:colcon.colcon_core.shell:Creating prefix script '/workspace/ros2_ws/install/local_setup.ps1'
+[91.621s] INFO:colcon.colcon_core.shell:Creating prefix util module '/workspace/ros2_ws/install/_local_setup_util_ps1.py'
+[91.625s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/workspace/ros2_ws/install/setup.ps1'
+[91.684s] INFO:colcon.colcon_core.shell:Creating prefix script '/workspace/ros2_ws/install/local_setup.sh'
+[91.687s] INFO:colcon.colcon_core.shell:Creating prefix util module '/workspace/ros2_ws/install/_local_setup_util_sh.py'
+[91.688s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/workspace/ros2_ws/install/setup.sh'
+[91.695s] INFO:colcon.colcon_core.shell:Creating prefix script '/workspace/ros2_ws/install/local_setup.bash'
+[91.697s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/workspace/ros2_ws/install/setup.bash'
+[91.703s] INFO:colcon.colcon_core.shell:Creating prefix script '/workspace/ros2_ws/install/local_setup.zsh'
+[91.704s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/workspace/ros2_ws/install/setup.zsh'
