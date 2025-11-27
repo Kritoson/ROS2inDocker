@@ -1,82 +1,134 @@
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Bool, Int32
+from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
-
+import math
+import time
 
 class MovementController(Node):
     def __init__(self):
         super().__init__('movement_controller')
 
-        self.obstacle_detected = False
-        self.obstacle_angle = None
-
-        # Subscribers
-        self.create_subscription(Bool, '/obstacle_detected', self.detect_cb, 10)
-        self.create_subscription(Int32, '/obstacle_angle', self.angle_cb, 10)
-
-        # Publisher
         self.cmd_pub = self.create_publisher(Twist, '/cmd_vel', 10)
+        self.lidar_sub = self.create_subscription(
+            LaserScan, '/scan', self.lidar_callback, 10
+        )
 
-        # Timer (10 Hz)
-        self.create_timer(0.1, self.control_loop)
+        self.cmd = Twist()
 
-        self.get_logger().info("MovementController initialized.")
+        self.forward_speed = 0.30
+        self.turn_speed = 0.60   # sola: +, sağa: -
+        self.radius_limit = 1.0  # 1 metre yarıçap
 
-    def detect_cb(self, msg):
-        self.obstacle_detected = msg.data
+        self.timer = self.create_timer(0.02, self.publish_cmd)
 
-    def angle_cb(self, msg):
-        self.obstacle_angle = msg.data
+        self.get_logger().info("ANGLE-BASED OBSTACLE AVOIDANCE ACTIVE")
 
-    def control_loop(self):
-        cmd = Twist()
+    def publish_cmd(self):
+        self.cmd_pub.publish(self.cmd)
 
-        # Engel yoksa → düz ileri
-        if not self.obstacle_detected:
-            cmd.linear.x = 0.2
-            cmd.angular.z = 0.0
-            self.cmd_pub.publish(cmd)
+    def lidar_callback(self, msg: LaserScan):
+
+        angle_min_deg = msg.angle_min * 180.0 / math.pi
+        angle_inc_deg = msg.angle_increment * 180.0 / math.pi
+
+        closest_dist = float('inf')
+        closest_angle = None
+
+        # ---------------------------------------
+        # LIDAR VERİSİ: ARAMAMIZ GEREKEN AÇI ARALIĞI
+        # +90 → +180 → -90
+        # ---------------------------------------
+
+        for i, r in enumerate(msg.ranges):
+
+            angle_deg = angle_min_deg + i * angle_inc_deg
+
+            # -------------------------
+            # S2E Noise Filtering
+            # -------------------------
+            if math.isnan(r) or math.isinf(r):
+                continue
+            if r <= 0.05:
+                continue
+            if r < 0.20:
+                continue
+            if r > 8.0:
+                continue
+
+            # 1 metre yarıçap içinde olmalı
+            if r > self.radius_limit:
+                continue
+
+            # -------------------------
+            # Only accept angles:
+            # +90..+180  OR  -180..-90
+            # -------------------------
+            in_sector = (
+                (90 <= angle_deg <= 180) or
+                (-180 <= angle_deg <= -90)
+            )
+
+            if not in_sector:
+                continue
+
+            # En yakın noktayı seç
+            if r < closest_dist:
+                closest_dist = r
+                closest_angle = angle_deg
+
+        # ---------------------------------------
+        # CASE: NESNE YOK → DÜZ GİT
+        # ---------------------------------------
+        if closest_angle is None:
+            self.go_straight()
             return
 
-        # Engel varsa → açıya göre davran
-        angle = self.obstacle_angle
+        # ---------------------------------------
+        # CASE: NESNE VAR → STOP + yönel
+        # ---------------------------------------
+        self.stop()
+        time.sleep(0.2)
 
-        if angle is None:
+        # Açı pozitif → SAĞ tarafta → SOLA kaç
+        if closest_angle > 0:
+            self.turn_left()
+            self.get_logger().info(
+                f"Object RIGHT side angle={closest_angle:.1f} → Turning LEFT"
+            )
             return
 
-        # Tam ön engel (–10°…+10° alanını da kritik kabul ettim)
-        if -10 <= angle <= 10:
-            cmd.linear.x = 0.0
-            cmd.angular.z = 0.0
-            self.cmd_pub.publish(cmd)
-            self.get_logger().info("Front obstacle → STOP")
+        # Açı negatif → SOL tarafta → SAĞA kaç
+        if closest_angle < 0:
+            self.turn_right()
+            self.get_logger().info(
+                f"Object LEFT side angle={closest_angle:.1f} → Turning RIGHT"
+            )
             return
 
-        # Engel sağda → sola dön
-        if angle < -10:
-            cmd.linear.x = 0.0
-            cmd.angular.z = +0.5
-            self.cmd_pub.publish(cmd)
-            self.get_logger().info(f"Obstacle right ({angle}°) → TURN LEFT")
-            return
+    # ----------------------------------------------------
+    # Movement helper functions
+    # ----------------------------------------------------
+    def stop(self):
+        self.cmd.linear.x = 0.0
+        self.cmd.angular.z = 0.0
 
-        # Engel solda → sağa dön
-        if angle > 10:
-            cmd.linear.x = 0.0
-            cmd.angular.z = -0.5
-            self.cmd_pub.publish(cmd)
-            self.get_logger().info(f"Obstacle left ({angle}°) → TURN RIGHT")
-            return
+    def go_straight(self):
+        self.cmd.linear.x = self.forward_speed
+        self.cmd.angular.z = 0.0
+
+    def turn_left(self):
+        self.cmd.linear.x = 0.0
+        self.cmd.angular.z = +self.turn_speed
+
+    def turn_right(self):
+        self.cmd.linear.x = 0.0
+        self.cmd.angular.z = -self.turn_speed
 
 
-def main(args=None):
-    rclpy.init(args=args)
+def main():
+    rclpy.init()
     node = MovementController()
     rclpy.spin(node)
-    node.destroy_node()
     rclpy.shutdown()
 
-
-if __name__ == '__main__':
-    main()
