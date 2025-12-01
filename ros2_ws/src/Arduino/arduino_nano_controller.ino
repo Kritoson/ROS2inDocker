@@ -1,14 +1,16 @@
+#include <Servo.h>
+
 // ============================================================================
-//   Professional Motor PWM Controller for Robot (71.4 Hz Exact Timing)
-//   Rotation + Throttle   → Timer1 (16-bit)
-//   Brush Motor PWM       → Timer2 (8-bit fast PWM, extended for 14ms period)
+//   Professional Motor PWM Controller for Robot
+//   Rotation + Throttle   → Servo pulses
+//   Brush Motor PWM       → Servo pulse (sabit duty)
 //   Includes: Failsafe, Ramp, Serial protocol from Jetson
 // ============================================================================
 
 // ------------------------- PWM Pin Definitions -------------------------------
-const int PIN_ROTATION = 3;   // Timer1 - OC1A
-const int PIN_THROTTLE = 5;  // Timer1 - OC1B
-const int PIN_BRUSH    = 6;   // Timer2 - OC2B
+const int PIN_ROTATION = 3;
+const int PIN_THROTTLE = 5;
+const int PIN_BRUSH    = 6;
 
 // ------------------------- Target PWM Values (µs) ---------------------------
 volatile int targetRotation = 1500;
@@ -28,47 +30,10 @@ const unsigned long FAILSAFE_TIMEOUT = 1000;   // ms
 const int RAMP_STEP = 10;       // µs başına artış
 const int RAMP_INTERVAL = 5;    // ms
 
-// ============================================================================
-//                               TIMER SETUP
-// ============================================================================
-void setupTimer1_71Hz() {
-    // Timer1 STOP
-    TCCR1A = 0;
-    TCCR1B = 0;
-
-    // Prescaler = 8 → Timer clock: 16MHz / 8 = 2MHz (0.5 µs per tick)
-    TCCR1B |= (1 << WGM13) | (1 << WGM12);   // Mode 14 (Fast PWM, TOP=ICR1)
-    TCCR1A |= (1 << WGM11);
-
-    TCCR1A |= (1 << COM1A1); // OC1A → Rotation PWM
-    TCCR1A |= (1 << COM1B1); // OC1B → Throttle PWM
-
-    ICR1 = 28000;            // 14ms period → 28000 ticks @ 0.5us resolution
-
-    // Başlangıç olarak merkez 1500us → 3000 tick
-    OCR1A = 3000;
-    OCR1B = 3000;
-
-    TCCR1B |= (1 << CS11);   // Start timer (prescaler 8)
-}
-
-// ---------------------------------------------------------------------------
-// Timer2 → Brush motor PWM (14ms periyot için geniş mod)
-// ---------------------------------------------------------------------------
-void setupTimer2_71Hz() {
-    // Timer2 normal PWM buna uygun değildir → Phase Correct kullanılan özel mod
-    // Ancak robotun brush motor PWM sinyali sadece ON/OFF davranışına sahip
-    // Bu nedenle Timer2'yi "pulse width generator" gibi kullanıyoruz.
-
-    pinMode(PIN_BRUSH, OUTPUT);
-}
-
-// ============================================================================
-//                   MICROSECOND → TIMER TICK CONVERSION
-// ============================================================================
-int usToTicks(int us) {
-    return us * 2;   // 0.5 µs per tick
-}
+// ------------------------- Servo Instances -----------------------------------
+Servo rotationServo;
+Servo throttleServo;
+Servo brushServo;
 
 // ============================================================================
 //                              SERIAL PROTOCOL
@@ -123,14 +88,10 @@ void applyRamp() {
     currentThrottle = ramp(currentThrottle, targetThrottle);
     currentBrush    = ramp(currentBrush, targetBrush);
 
-    // Convert to ticks and write to hardware PWM
-    OCR1A = usToTicks(currentRotation);
-    OCR1B = usToTicks(currentThrottle);
-
-    // Brush PWM manual:
-    digitalWrite(PIN_BRUSH, HIGH);
-    delayMicroseconds(currentBrush);
-    digitalWrite(PIN_BRUSH, LOW);
+    // Servo library handles pulse timing; we just update targets
+    rotationServo.writeMicroseconds(currentRotation);
+    throttleServo.writeMicroseconds(currentThrottle);
+    brushServo.writeMicroseconds(currentBrush);
 }
 
 // ============================================================================
@@ -139,11 +100,9 @@ void applyRamp() {
 void setup() {
     Serial.begin(115200);
 
-    pinMode(PIN_ROTATION, OUTPUT);
-    pinMode(PIN_THROTTLE, OUTPUT);
-
-    setupTimer1_71Hz();
-    setupTimer2_71Hz();
+    rotationServo.attach(PIN_ROTATION);
+    throttleServo.attach(PIN_THROTTLE);
+    brushServo.attach(PIN_BRUSH);
 
     lastCommandTime = millis();  // Failsafe init
 }
