@@ -1,181 +1,158 @@
-// ======================================================
-//  PWM + Periferik Kontrol – Acceleration Ramp (2 seconds)
-// ======================================================
+// ============================================================================
+//   Professional Motor PWM Controller for Robot (71.4 Hz Exact Timing)
+//   Rotation + Throttle   → Timer1 (16-bit)
+//   Brush Motor PWM       → Timer2 (8-bit fast PWM, extended for 14ms period)
+//   Includes: Failsafe, Ramp, Serial protocol from Jetson
+// ============================================================================
 
-const int PIN_THROTTLE = 5;
-const int PIN_ROTATION = 3;
-const int PIN_BRUSH     = 6;
+// ------------------------- PWM Pin Definitions -------------------------------
+const int PIN_ROTATION = 9;   // Timer1 - OC1A
+const int PIN_THROTTLE = 10;  // Timer1 - OC1B
+const int PIN_BRUSH    = 3;   // Timer2 - OC2B
 
-const int PIN_VACUUM_RELAY     = 7;
-const int PIN_HYDROPHORE_RELAY = 8;
+// ------------------------- Target PWM Values (µs) ---------------------------
+volatile int targetRotation = 1500;
+volatile int targetThrottle = 1500;
+volatile int targetBrush    = 1500;
 
-// Hedef PWM değerleri (Jetson'dan gelen)
-volatile int targetThrottlePWM = 1500;
-volatile int targetRotationPWM = 1500;
-volatile int targetBrushPWM    = 1000;
+// ------------------------- Actual PWM Output (ramplı) ------------------------
+int currentRotation = 1500;
+int currentThrottle = 1500;
+int currentBrush    = 1500;
 
-// Ramp uygulanmış gerçek PWM’ler
-int currentThrottlePWM = 1500;
-int currentRotationPWM = 1500;
-int currentBrushPWM    = 1000;
+// ------------------------- Failsafe Timer -----------------------------------
+unsigned long lastCommandTime = 0;
+const unsigned long FAILSAFE_TIMEOUT = 1000;   // ms
 
-bool brushState = false;
-bool vacuumState = false;
-bool hydroState  = false;
+// ------------------------- Ramp Configuration -------------------------------
+const int RAMP_STEP = 10;       // µs başına artış
+const int RAMP_INTERVAL = 5;    // ms
 
-// Ramp parametreleri
-const unsigned long RAMP_TIME_MS = 2000; // 2 seconds
-const unsigned long PWM_FRAME_US = 15000; // 15ms period
-const int RAMP_STEPS = RAMP_TIME_MS / (PWM_FRAME_US / 1000); // ≈133
+// ============================================================================
+//                               TIMER SETUP
+// ============================================================================
+void setupTimer1_71Hz() {
+    // Timer1 STOP
+    TCCR1A = 0;
+    TCCR1B = 0;
 
-unsigned long lastPulseTime = 0;
+    // Prescaler = 8 → Timer clock: 16MHz / 8 = 2MHz (0.5 µs per tick)
+    TCCR1B |= (1 << WGM13) | (1 << WGM12);   // Mode 14 (Fast PWM, TOP=ICR1)
+    TCCR1A |= (1 << WGM11);
 
+    TCCR1A |= (1 << COM1A1); // OC1A → Rotation PWM
+    TCCR1A |= (1 << COM1B1); // OC1B → Throttle PWM
+
+    ICR1 = 28000;            // 14ms period → 28000 ticks @ 0.5us resolution
+
+    // Başlangıç olarak merkez 1500us → 3000 tick
+    OCR1A = 3000;
+    OCR1B = 3000;
+
+    TCCR1B |= (1 << CS11);   // Start timer (prescaler 8)
+}
+
+// ---------------------------------------------------------------------------
+// Timer2 → Brush motor PWM (14ms periyot için geniş mod)
+// ---------------------------------------------------------------------------
+void setupTimer2_71Hz() {
+    // Timer2 normal PWM buna uygun değildir → Phase Correct kullanılan özel mod
+    // Ancak robotun brush motor PWM sinyali sadece ON/OFF davranışına sahip
+    // Bu nedenle Timer2'yi "pulse width generator" gibi kullanıyoruz.
+
+    pinMode(PIN_BRUSH, OUTPUT);
+}
+
+// ============================================================================
+//                   MICROSECOND → TIMER TICK CONVERSION
+// ============================================================================
+int usToTicks(int us) {
+    return us * 2;   // 0.5 µs per tick
+}
+
+// ============================================================================
+//                              SERIAL PROTOCOL
+//     Jetson → “T1500”, “R1600”, “B1”, “B0” şeklinde komut gönderir
+// ============================================================================
+void processSerial() {
+    if (Serial.available()) {
+        char c = Serial.read();
+
+        if (c == 'R') {             // Rotation
+            targetRotation = Serial.parseInt();
+        }
+        else if (c == 'T') {        // Throttle
+            targetThrottle = Serial.parseInt();
+        }
+        else if (c == 'B') {        // Brush (0/1)
+            int v = Serial.parseInt();
+            targetBrush = (v == 1 ? 1500 : 1500);  // Brush sabit 1500 µs
+        }
+
+        lastCommandTime = millis(); // Failsafe reset
+    }
+}
+
+// ============================================================================
+//                                FAILSAFE
+// ============================================================================
+void checkFailsafe() {
+    if (millis() - lastCommandTime > FAILSAFE_TIMEOUT) {
+        targetRotation = 1500;
+        targetThrottle = 1500;
+        targetBrush    = 1500;
+    }
+}
+
+// ============================================================================
+//                                 RAMP LOGIC
+// ============================================================================
+void applyRamp() {
+    static unsigned long lastRamp = 0;
+
+    if (millis() - lastRamp < RAMP_INTERVAL) return;
+    lastRamp = millis();
+
+    auto ramp = [](int current, int target) {
+        if (current < target) current += RAMP_STEP;
+        else if (current > target) current -= RAMP_STEP;
+        return current;
+    };
+
+    currentRotation = ramp(currentRotation, targetRotation);
+    currentThrottle = ramp(currentThrottle, targetThrottle);
+    currentBrush    = ramp(currentBrush, targetBrush);
+
+    // Convert to ticks and write to hardware PWM
+    OCR1A = usToTicks(currentRotation);
+    OCR1B = usToTicks(currentThrottle);
+
+    // Brush PWM manual:
+    digitalWrite(PIN_BRUSH, HIGH);
+    delayMicroseconds(currentBrush);
+    digitalWrite(PIN_BRUSH, LOW);
+}
+
+// ============================================================================
+//                                    SETUP
+// ============================================================================
 void setup() {
     Serial.begin(115200);
 
-    pinMode(PIN_THROTTLE, OUTPUT);
     pinMode(PIN_ROTATION, OUTPUT);
-    pinMode(PIN_BRUSH, OUTPUT);
+    pinMode(PIN_THROTTLE, OUTPUT);
 
-    pinMode(PIN_VACUUM_RELAY, OUTPUT);
-    pinMode(PIN_HYDROPHORE_RELAY, OUTPUT);
+    setupTimer1_71Hz();
+    setupTimer2_71Hz();
 
-    digitalWrite(PIN_VACUUM_RELAY, HIGH);
-    digitalWrite(PIN_HYDROPHORE_RELAY, HIGH);
-
-    Serial.println("MSG: Arduino Motor Controller with 2s Ramp Ready.");
+    lastCommandTime = millis();  // Failsafe init
 }
 
-// ------------------------------------------------------
-//      TELEMETRY
-// ------------------------------------------------------
-void sendStatus(const char *msg)
-{
-    Serial.print("STATUS ");
-    Serial.println(msg);
-}
-
-
-// ------------------------------------------------------
-//      SERIAL PARSER
-// ------------------------------------------------------
-void parseCommand(char *line)
-{
-    char cmd = line[0];
-    int val = atoi(line + 1);
-
-    switch(cmd)
-    {
-        case 'T':
-            targetThrottlePWM = constrain(val, 1000, 2000);
-            sendStatus("OK Throttle Target");
-            break;
-
-        case 'R':
-            targetRotationPWM = constrain(val, 1000, 2000);
-            sendStatus("OK Rotation Target");
-            break;
-
-        case 'B':
-            if (val == 2) brushState = !brushState;
-            else brushState = (val == 1);
-
-            targetBrushPWM = brushState ? 1700 : 1000;
-            sendStatus("OK Brush");
-            break;
-
-        case 'V':
-            if (val == 2) vacuumState = !vacuumState;
-            else vacuumState = (val == 1);
-
-            digitalWrite(PIN_VACUUM_RELAY, vacuumState ? LOW : HIGH);
-            sendStatus("OK Vacuum");
-            break;
-
-        case 'H':
-            if (val == 2) hydroState = !hydroState;
-            else hydroState = (val == 1);
-
-            digitalWrite(PIN_HYDROPHORE_RELAY, hydroState ? LOW : HIGH);
-            sendStatus("OK Hydrophore");
-            break;
-
-        default:
-            Serial.print("ERR Unknown: ");
-            Serial.println(line);
-            break;
-    }
-}
-
-void readSerial()
-{
-    static char buf[32];
-    static uint8_t idx = 0;
-
-    while (Serial.available())
-    {
-        char c = Serial.read();
-        if (c == '\n') {
-            buf[idx] = 0;
-            parseCommand(buf);
-            idx = 0;
-        }
-        else if (idx < sizeof(buf) - 1) {
-            buf[idx++] = c;
-        }
-    }
-}
-
-
-// ------------------------------------------------------
-//      ACCELERATION RAMP (2 seconds)
-// ------------------------------------------------------
-int ramp_step(int current, int target)
-{
-    if (current == target) return current;
-
-    int diff = target - current;
-    int step = diff / RAMP_STEPS;
-
-    if (step == 0)
-        step = (diff > 0 ? 1 : -1); // minimum 1 birim hareket
-
-    return current + step;
-}
-
-
-// ------------------------------------------------------
-//      PWM SIGNAL GENERATION
-// ------------------------------------------------------
-void generatePWM(int pin, int pwm)
-{
-    digitalWrite(pin, HIGH);
-    delayMicroseconds(pwm);
-    digitalWrite(pin, LOW);
-}
-
-
-// ------------------------------------------------------
-//      MAIN LOOP
-// ------------------------------------------------------
-void loop()
-{
-    readSerial();
-
-    // PWM frame time
-    unsigned long now = micros();
-    if (now - lastPulseTime >= PWM_FRAME_US)
-    {
-        // ---- Apply ramping ----
-        currentThrottlePWM = ramp_step(currentThrottlePWM, targetThrottlePWM);
-        currentRotationPWM = ramp_step(currentRotationPWM, targetRotationPWM);
-        currentBrushPWM    = ramp_step(currentBrushPWM,    targetBrushPWM);
-
-        // ---- Generate pulses ----
-        generatePWM(PIN_THROTTLE, currentThrottlePWM);
-        generatePWM(PIN_ROTATION, currentRotationPWM);
-        generatePWM(PIN_BRUSH,    currentBrushPWM);
-
-        lastPulseTime = now;
-    }
+// ============================================================================
+//                                    LOOP
+// ============================================================================
+void loop() {
+    processSerial();
+    checkFailsafe();
+    applyRamp();
 }

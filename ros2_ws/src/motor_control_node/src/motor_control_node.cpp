@@ -56,20 +56,16 @@ public:
             "/hydrophore", 10,
             std::bind(&MotorControlNode::hydrophore_callback, this, std::placeholders::_1));
 
-        keyboard_sub = create_subscription<std_msgs::msg::String>(
-            "/keyboard_input", 10,
-            std::bind(&MotorControlNode::keyboard_callback, this, std::placeholders::_1));
-
         // -----------------------------
         // PUBLISHER
         // -----------------------------
         motor_status_publisher_ = create_publisher<std_msgs::msg::String>("/motor_status", 10);
 
         // -----------------------------
-        // TIMER → 50 Hz UPDATE LOOP
+        // TIMER → Arduino PWM döngüsüne yakın (~71 Hz, 14ms)
         // -----------------------------
         timer_ = create_wall_timer(
-            std::chrono::milliseconds(20),
+            std::chrono::milliseconds(14),
             std::bind(&MotorControlNode::update_loop, this));
     }
 
@@ -157,19 +153,6 @@ private:
         hydrophoreState = msg->data;
     }
 
-    void keyboard_callback(const std_msgs::msg::String::SharedPtr msg)
-    {
-        std::string key = msg->data;
-
-        if (key == "w") throttlePWM = PWM_2ms;
-        else if (key == "s") throttlePWM = PWM_1ms;
-        else if (key == "x") throttlePWM = PWM_Center;
-
-        if (key == "a") rotationPWM = PWM_1ms;
-        else if (key == "d") rotationPWM = PWM_2ms;
-        else if (key == "z") rotationPWM = PWM_Center;
-    }
-
     // =============================
     // ANA UPDATE LOOP
     // =============================
@@ -205,7 +188,6 @@ private:
     rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr brush_sub;
     rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr vacuum_sub;
     rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr hydrophore_sub;
-    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr keyboard_sub;
 
     // PUBLISHER
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr motor_status_publisher_;
@@ -222,4 +204,3 @@ int main(int argc, char *argv[])
     rclcpp::shutdown();
     return 0;
 }
-
