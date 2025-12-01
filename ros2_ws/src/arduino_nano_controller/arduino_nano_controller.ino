@@ -27,8 +27,8 @@ unsigned long lastCommandTime = 0;
 const unsigned long FAILSAFE_TIMEOUT = 1000;   // ms
 
 // ------------------------- Ramp Configuration -------------------------------
-const int RAMP_STEP = 10;       // µs başına artış
-const int RAMP_INTERVAL = 5;    // ms
+const int RAMP_STEP = 10;        // µs başına artış (daha yavaş)
+const int RAMP_INTERVAL = 5;   // ms
 
 // ------------------------- Servo Instances -----------------------------------
 Servo rotationServo;

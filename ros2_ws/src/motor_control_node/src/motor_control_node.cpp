@@ -19,8 +19,8 @@ public:
         // PWM ARALIKLARI (DÜZELTİLMİŞ)
         // -----------------------------
         PWM_Center = 1500;
-        PWM_1ms    = 1000;
-        PWM_2ms    = 2000;
+        PWM_1ms    = 1300;
+        PWM_2ms    = 1700;
 
         throttlePWM = PWM_Center;
         rotationPWM = PWM_Center;

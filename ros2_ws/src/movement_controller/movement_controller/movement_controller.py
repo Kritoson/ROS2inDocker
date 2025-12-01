@@ -19,8 +19,10 @@ class MovementController(Node):
         self.forward_speed = 0.30
         self.turn_speed = 0.60   # sola: +, sağa: -
         self.radius_limit = 1.0  # 1 metre yarıçap
+        self.wait_until_ts = None   # engel bekleme süresi sonu
+        self.pending_turn = None    # "left" veya "right"
 
-        self.timer = self.create_timer(0.02, self.publish_cmd)
+        self.timer = self.create_timer(0.01, self.publish_cmd)
 
         self.get_logger().info("ANGLE-BASED OBSTACLE AVOIDANCE ACTIVE")
 
@@ -81,17 +83,38 @@ class MovementController(Node):
         # CASE: NESNE YOK → DÜZ GİT
         # ---------------------------------------
         if closest_angle is None:
+            self.wait_until_ts = None
+            self.pending_turn = None
             self.go_straight()
+            self.get_logger().info(
+                f"Path Clear → Moving Straight"
+            )
             return
 
         # ---------------------------------------
-        # CASE: NESNE VAR → STOP + yönel
+        # CASE: NESNE VAR → STOP + bekle + yönel
         # ---------------------------------------
-        self.stop()
-        time.sleep(0.2)
+        now = time.time()
+
+        # Engeli ilk kez gördüysek bekleme sürecini başlat
+        if self.wait_until_ts is None:
+            self.wait_until_ts = now + 2.0
+            self.pending_turn = "left" if closest_angle > 0 else "right"
+            self.stop()
+            return
+
+        # Bekleme sürüyor
+        if now < self.wait_until_ts:
+            self.stop()
+            return
+
+        # Bekleme bitti → yönel ve süreci sıfırla
+        turn_dir = self.pending_turn
+        self.wait_until_ts = None
+        self.pending_turn = None
 
         # Açı pozitif → SAĞ tarafta → SOLA kaç
-        if closest_angle > 0:
+        if turn_dir == "left":
             self.turn_left()
             self.get_logger().info(
                 f"Object RIGHT side angle={closest_angle:.1f} → Turning LEFT"
@@ -99,7 +122,7 @@ class MovementController(Node):
             return
 
         # Açı negatif → SOL tarafta → SAĞA kaç
-        if closest_angle < 0:
+        if turn_dir == "right":
             self.turn_right()
             self.get_logger().info(
                 f"Object LEFT side angle={closest_angle:.1f} → Turning RIGHT"
@@ -131,4 +154,3 @@ def main():
     node = MovementController()
     rclpy.spin(node)
     rclpy.shutdown()
-
