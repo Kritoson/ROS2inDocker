@@ -7,10 +7,10 @@ echo "===================================================="
 if [ -f /etc/nv_tegra_release ]; then
     echo "[INFO] Jetson detected"
     export ROS_WORKSPACE_JETSON=./ros2_ws
-    docker compose --profile robot up --build
+    docker compose --profile robot up
 else
     echo "[INFO] PC detected"
     export ROS_WORKSPACE_PC=./ros2_ws
-    docker compose --profile sim up --build
+    docker compose --profile sim up
 fi
 
