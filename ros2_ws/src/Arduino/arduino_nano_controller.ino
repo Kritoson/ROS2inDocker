@@ -6,9 +6,9 @@
 // ============================================================================
 
 // ------------------------- PWM Pin Definitions -------------------------------
-const int PIN_ROTATION = 9;   // Timer1 - OC1A
-const int PIN_THROTTLE = 10;  // Timer1 - OC1B
-const int PIN_BRUSH    = 3;   // Timer2 - OC2B
+const int PIN_ROTATION = 3;   // Timer1 - OC1A
+const int PIN_THROTTLE = 5;  // Timer1 - OC1B
+const int PIN_BRUSH    = 6;   // Timer2 - OC2B
 
 // ------------------------- Target PWM Values (µs) ---------------------------
 volatile int targetRotation = 1500;
