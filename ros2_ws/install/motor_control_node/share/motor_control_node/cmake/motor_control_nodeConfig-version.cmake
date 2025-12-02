@@ -1,1 +1,0 @@
-/workspace/ros2_ws/build/motor_control_node/ament_cmake_core/motor_control_nodeConfig-version.cmake

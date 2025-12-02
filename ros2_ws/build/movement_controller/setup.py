@@ -1,1 +1,0 @@
-/workspace/ros2_ws/src/movement_controller/setup.py
