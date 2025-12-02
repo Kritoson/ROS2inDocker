@@ -83,6 +83,9 @@ class MovementController(Node):
                 obstacle_detected = True
 
         now = time.time()
+        new_turn = None
+        if obstacle_detected:
+            new_turn = "left" if closest_angle > 0 else "right"
 
         # ---------------------------------------
         # STATE: ENGEL GÖRÜLDÜ → DÖNMEDEN ÖNCE 1 KERE 2 SN BEKLE
@@ -97,6 +100,7 @@ class MovementController(Node):
 
             if obstacle_detected:
                 self.state = "turning"
+                self.pending_turn = new_turn
                 if self.pending_turn == "left":
                     self.turn_left()
                     self.get_logger().info(
@@ -121,6 +125,16 @@ class MovementController(Node):
         # ---------------------------------------
         if self.state == "turning":
             if obstacle_detected:
+                # Engel yönü değiştiyse dönüş öncesi yeniden bekle
+                if new_turn and new_turn != self.pending_turn:
+                    self.state = "waiting_turn"
+                    self.wait_until_ts = now + 2.0
+                    self.pending_turn = new_turn
+                    self.stop()
+                    self.get_logger().info(
+                        f"Object angle flipped to {closest_angle:.1f} → waiting 2s before new turn"
+                    )
+                    return
                 # Aynı engel için dönmeye devam et (bekleme yok)
                 return
 
