@@ -19,8 +19,9 @@ class MovementController(Node):
         self.forward_speed = 0.30
         self.turn_speed = 0.60   # sola: +, sağa: -
         self.radius_limit = 1.0  # 1 metre yarıçap
-        self.wait_until_ts = None   # engel bekleme süresi sonu
+        self.wait_until_ts = None   # bekleme süresi sonu
         self.pending_turn = None    # "left" veya "right"
+        self.state = "clear"        # clear, waiting, turning
 
         self.timer = self.create_timer(0.01, self.publish_cmd)
 
@@ -36,6 +37,7 @@ class MovementController(Node):
 
         closest_dist = float('inf')
         closest_angle = None
+        obstacle_detected = False
 
         # ---------------------------------------
         # LIDAR VERİSİ: ARAMAMIZ GEREKEN AÇI ARALIĞI
@@ -78,56 +80,73 @@ class MovementController(Node):
             if r < closest_dist:
                 closest_dist = r
                 closest_angle = angle_deg
+                obstacle_detected = True
+
+        now = time.time()
 
         # ---------------------------------------
-        # CASE: NESNE YOK → DÜZ GİT
+        # STATE: ENGEL GÖRÜLDÜ → 1 KERE 2 SN BEKLE
         # ---------------------------------------
-        if closest_angle is None:
+        if self.state == "waiting":
+            if now < self.wait_until_ts:
+                self.stop()
+                return
+
+            # Bekleme bitti
             self.wait_until_ts = None
+
+            if obstacle_detected:
+                self.state = "turning"
+                if self.pending_turn == "left":
+                    self.turn_left()
+                    self.get_logger().info(
+                        f"Object RIGHT side angle={closest_angle:.1f} → Turning LEFT"
+                    )
+                else:
+                    self.turn_right()
+                    self.get_logger().info(
+                        f"Object LEFT side angle={closest_angle:.1f} → Turning RIGHT"
+                    )
+                return
+
+            # Engel kaybolduysa düz gitmeye dön
+            self.state = "clear"
             self.pending_turn = None
             self.go_straight()
-            self.get_logger().info(
-                f"Path Clear → Moving Straight"
-            )
+            self.get_logger().info("Object gone during wait → Moving Straight")
             return
 
         # ---------------------------------------
-        # CASE: NESNE VAR → STOP + bekle + yönel
+        # STATE: DÖNÜYOR → ENGEL YOKSA DÜZ GİT
         # ---------------------------------------
-        now = time.time()
+        if self.state == "turning":
+            if obstacle_detected:
+                # Aynı engel için dönmeye devam et (bekleme yok)
+                return
 
-        # Engeli ilk kez gördüysek bekleme sürecini başlat
-        if self.wait_until_ts is None:
+            # Engel temizlendi → düz git
+            self.state = "clear"
+            self.pending_turn = None
+            self.go_straight()
+            self.get_logger().info("Path Clear → Moving Straight")
+            return
+
+        # ---------------------------------------
+        # STATE: NORMAL (CLEAR)
+        # ---------------------------------------
+        if obstacle_detected:
+            # İlk kez görülen engel için tek seferlik bekleme başlat
+            self.state = "waiting"
             self.wait_until_ts = now + 2.0
             self.pending_turn = "left" if closest_angle > 0 else "right"
             self.stop()
             return
 
-        # Bekleme sürüyor
-        if now < self.wait_until_ts:
-            self.stop()
-            return
-
-        # Bekleme bitti → yönel ve süreci sıfırla
-        turn_dir = self.pending_turn
+        # Engel yok → düz git
+        self.state = "clear"
         self.wait_until_ts = None
         self.pending_turn = None
-
-        # Açı pozitif → SAĞ tarafta → SOLA kaç
-        if turn_dir == "left":
-            self.turn_left()
-            self.get_logger().info(
-                f"Object RIGHT side angle={closest_angle:.1f} → Turning LEFT"
-            )
-            return
-
-        # Açı negatif → SOL tarafta → SAĞA kaç
-        if turn_dir == "right":
-            self.turn_right()
-            self.get_logger().info(
-                f"Object LEFT side angle={closest_angle:.1f} → Turning RIGHT"
-            )
-            return
+        self.go_straight()
 
     # ----------------------------------------------------
     # Movement helper functions
