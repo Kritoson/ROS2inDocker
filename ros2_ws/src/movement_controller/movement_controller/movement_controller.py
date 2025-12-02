@@ -21,7 +21,7 @@ class MovementController(Node):
         self.radius_limit = 1.0  # 1 metre yarıçap
         self.wait_until_ts = None   # bekleme süresi sonu
         self.pending_turn = None    # "left" veya "right"
-        self.state = "clear"        # clear, waiting, turning
+        self.state = "clear"        # clear, waiting_turn, turning, waiting_straight
 
         self.timer = self.create_timer(0.01, self.publish_cmd)
 
@@ -85,9 +85,9 @@ class MovementController(Node):
         now = time.time()
 
         # ---------------------------------------
-        # STATE: ENGEL GÖRÜLDÜ → 1 KERE 2 SN BEKLE
+        # STATE: ENGEL GÖRÜLDÜ → DÖNMEDEN ÖNCE 1 KERE 2 SN BEKLE
         # ---------------------------------------
-        if self.state == "waiting":
+        if self.state == "waiting_turn":
             if now < self.wait_until_ts:
                 self.stop()
                 return
@@ -110,25 +110,50 @@ class MovementController(Node):
                 return
 
             # Engel kaybolduysa düz gitmeye dön
-            self.state = "clear"
-            self.pending_turn = None
-            self.go_straight()
-            self.get_logger().info("Object gone during wait → Moving Straight")
+            self.state = "waiting_straight"
+            self.wait_until_ts = now + 2.0
+            self.stop()
+            self.get_logger().info("Object gone during wait → waiting 2s before straight")
             return
 
         # ---------------------------------------
-        # STATE: DÖNÜYOR → ENGEL YOKSA DÜZ GİT
+        # STATE: DÖNÜYOR → ENGEL YOKSA 2 SN BEKLE, SONRA DÜZ GİT
         # ---------------------------------------
         if self.state == "turning":
             if obstacle_detected:
                 # Aynı engel için dönmeye devam et (bekleme yok)
                 return
 
-            # Engel temizlendi → düz git
+            # Engel temizlendi → düz gitmeden önce bekle
+            self.state = "waiting_straight"
+            self.wait_until_ts = now + 2.0
+            self.pending_turn = None
+            self.stop()
+            self.get_logger().info("Path Clear → waiting 2s before Moving Straight")
+            return
+
+        # ---------------------------------------
+        # STATE: DÜZ GİTMEYE DÖNMEDEN ÖNCE BEKLE
+        # ---------------------------------------
+        if self.state == "waiting_straight":
+            if obstacle_detected:
+                # Yeni engel çıktı → tekrar dönüş beklemesine geç
+                self.state = "waiting_turn"
+                self.wait_until_ts = now + 2.0
+                self.pending_turn = "left" if closest_angle > 0 else "right"
+                self.stop()
+                return
+
+            if now < self.wait_until_ts:
+                self.stop()
+                return
+
+            # Bekleme tamam → düz git
             self.state = "clear"
+            self.wait_until_ts = None
             self.pending_turn = None
             self.go_straight()
-            self.get_logger().info("Path Clear → Moving Straight")
+            self.get_logger().info("Resumed → Moving Straight")
             return
 
         # ---------------------------------------
@@ -136,7 +161,7 @@ class MovementController(Node):
         # ---------------------------------------
         if obstacle_detected:
             # İlk kez görülen engel için tek seferlik bekleme başlat
-            self.state = "waiting"
+            self.state = "waiting_turn"
             self.wait_until_ts = now + 2.0
             self.pending_turn = "left" if closest_angle > 0 else "right"
             self.stop()
